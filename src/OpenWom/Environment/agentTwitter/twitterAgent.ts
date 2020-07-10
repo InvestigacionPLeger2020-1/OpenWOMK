@@ -9,11 +9,11 @@ export class twitterAgent extends agent{
   protected shareProbability: number;
   protected retweetProbability: number;
   protected wear: number;
-  
 
 
-    //message
-    //state readed-no readed ; retweeted-no retweteed?
+
+    // message
+    // state readed-no readed ; retweeted-no retweteed?
 //    estado como una clase aparte que esta con agente generico, el estado en el agente abstracto puede estar como un elemento,
 
 
@@ -23,12 +23,12 @@ constructor(influence ?: number , state ?: string, followers ?: number, particip
        this.readProbability = readProbability;
    }
 
-    createAction(): void{ //read and retweet
+    createAction(): void{ // read and retweet
 
-    if((this.readProbability)<Math.random() ){
+    if((this.readProbability) < Math.random() ){
         this.setState('read');
 
-        if((this.shareProbability)>Math.random()){ //posible influencia??
+        if((this.shareProbability) > Math.random()){ // posible influencia??
             this.setState('retweeted');
 
         }
@@ -44,37 +44,37 @@ constructor(influence ?: number , state ?: string, followers ?: number, particip
 
    }
 
-  
+
 
    imprimir(): void{
        console.log(this.state);
    }
 
- 
+
 
    getState(): string{
-       
+
        return this.state;
-    
+
    }
    setState(state: string): void{
-       this.state=state;
+       this.state = state;
    }
 
    createRule(): any{
 
-    console.log('crear regla'); //reglas como metodos a acciones con determinadas reglas??
+    console.log('crear regla'); // reglas como metodos a acciones con determinadas reglas??
 
    }
 
    isSeed(): boolean{
-        this.seed=true;
-       return this.seed;
+        this.seed = true;
+        return this.seed;
    }
 
 }
 
- 
- 
+
+
 
 

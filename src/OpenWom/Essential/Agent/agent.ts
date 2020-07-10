@@ -13,15 +13,8 @@ export abstract class agent{
         this.state = state;
         this.followers = followers;
     }
-
-    
-
-
     abstract createAction(): any;
     abstract createRule(): any;
-  //abstract createAgent(): any;
-
-    
-
+  // abstract createAgent(): any;
 
 }

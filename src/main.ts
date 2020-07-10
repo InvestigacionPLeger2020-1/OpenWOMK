@@ -2,7 +2,7 @@ import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
-import {hub} from './OpenWom/Scenarios/hub/hub';
+import { hub } from './OpenWom/Scenarios/hub/hub';
 import { agent } from './OpenWom/Essential/Agent/agent';
 import { twitterAgent } from './OpenWom/Environment/agentTwitter/twitterAgent';
 import { simulation } from './OpenWom/Essential/simulation/Simulation';
@@ -75,13 +75,9 @@ createUsers(): any {
  // for i= seedsize< networksize
   for (let i=0; i<2; i++) {
       consumers.push(new hub(2,'read',2,2,2,'2'));
-     /* user.setID(i);
-
-      users.add(user);
-      allUsers.add(user);
-      *//*
+   /*
   }
-  console.log('Termino crear users');
+
 }
 */
 
