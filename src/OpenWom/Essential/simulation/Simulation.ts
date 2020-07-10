@@ -1,9 +1,9 @@
-import {hub} from '../Scenarios/hub/hub';
+import {hub} from '../../Scenarios/hub/hub';
 import { getHtmlTagDefinition } from '@angular/compiler';
-import { agent } from '../Essential/Agent/agent';
-import { twitterAgent } from '../Environment/agentTwitter/twitterAgent';
+import { agent } from '../Agent/agent';
+import { twitterAgent } from '../../Environment/agentTwitter/twitterAgent';
 // tslint:disable-next-line:class-name
-export class simulation{
+export class simulation{  //abstract
 
 
 /*
@@ -18,10 +18,10 @@ export class simulation{
 
 
 getsum(): number{
-  return 1+1;
+  return 1 + 1;
 }
 getdif(): number{
-  return 1-1;
+  return 1 - 1;
 }
 
 
@@ -37,12 +37,12 @@ getdif(): number{
 
 
 
-let unhub = new hub(2,  'read', 2, 2, 2, 'asd');
+const unhub = new hub(2,  'read', 2, 2, 2, 'asd');
 console.log(unhub.getState);
 
 
- function getsum(): number{
-  var result= 1+2;
+function getsum(): number{
+  const result = 1 + 2;
   return result;
 }
 
