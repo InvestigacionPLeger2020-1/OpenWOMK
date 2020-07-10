@@ -1,9 +1,13 @@
-import {environmentFactory} from '../environmentFactory';
+import {environmentFactory} from '../../Essential/EnvFactory/environmentFactory';
 
-class facebook extends environmentFactory{
+class whatsappEnv extends environmentFactory{
+
+  
+  
 
 
 
+    //lo de reglas y acciones deberian ir en agent
     getAction(): any{
         console.log('action');
     }
@@ -22,3 +26,5 @@ class facebook extends environmentFactory{
 
 
 }
+
+

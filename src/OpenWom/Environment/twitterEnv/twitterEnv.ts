@@ -1,20 +1,23 @@
-import {environmentFactory} from '../environmentFactory';
+import {environmentFactory} from '../../Essential/EnvFactory/environmentFactory';
 
 
- export class twitter extends environmentFactory{
-
+ export class twitterEnv extends environmentFactory{
+/*
     public followerArray: Array<agent>;
     public agentArray: Array<agent>;
+
+    */
+   
     //lista de memoria t, t+1
 
 
 
-    twitter({ followerArray, agentArray }: { followerArray: agent[]; agentArray: agent[]; }){
+    /*twitter({ followerArray, agentArray }: { followerArray: agent[]; agentArray: agent[]; }){
         this.followerArray=followerArray;
         this.agentArray, 
         agentArray;
     }
-
+*/
     //tomar los metodos de twitter agent
 
     createConsumers(){ //rellenar 

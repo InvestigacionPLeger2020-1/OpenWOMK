@@ -1,6 +1,9 @@
-import {hub} from '../agent/agentTwitter/twitterAgent';
+import {hub} from '../Scenarios/hub/hub';
+import { getHtmlTagDefinition } from '@angular/compiler';
+import { agent } from '../Essential/Agent/agent';
+import { twitterAgent } from '../Environment/agentTwitter/twitterAgent';
 // tslint:disable-next-line:class-name
-class simulation{
+export class simulation{
 
 
 /*
@@ -14,11 +17,34 @@ class simulation{
 // influence: number,  state: string, followers: number, participation: number,  readprobability: number, characteristicones: string
 
 
+getsum(): number{
+  return 1+1;
+}
+getdif(): number{
+  return 1-1;
+}
+
+
+
+
+
+
 
 }
-const unhub = new hub(2,  'read', 2, 2, 2, 'asd');
+
+
+
+
+
+
+let unhub = new hub(2,  'read', 2, 2, 2, 'asd');
 console.log(unhub.getState);
 
+
+ function getsum(): number{
+  var result= 1+2;
+  return result;
+}
 
 function beginSimulation(){
 

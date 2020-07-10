@@ -28,6 +28,8 @@ class facebookAgent extends agent{
 
 }
 
+
+// tslint:disable-next-line:class-name
 class facebook1 extends facebookAgent{
     characteristicone: string
     constructor( participation: number, state: string, influence: number,characteristicone: string, ){

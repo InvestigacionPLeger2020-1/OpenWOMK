@@ -1,0 +1,3 @@
+interface Iaction {
+    retweet(): any;
+  }

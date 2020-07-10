@@ -1,6 +1,5 @@
-import { RulesEditComponent } from 'src/app/components/rules-edit/rules-edit.component';
 
-  export abstract class environmentFactory{
+ export abstract class environmentFactory{
 
     periods: number;
     nsimulation: number;
