@@ -1,12 +1,15 @@
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { AppModule } from '../../app/app.module';
-import { environment } from '../../environments/environment';
-import { hub } from '../Scenarios/hub/hub';
-import { agent } from '../Essential/agent';
-import { twitterAgent } from '../Environment/twitter/twitterAgent';
-import { simulation } from '../Essential/Simulation';
+import {enableProdMode} from '@angular/core';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {AppModule} from '../../app/app.module';
+import {environment} from '../../environments/environment';
+import {hub} from '../Scenarios/hub/hub';
+import {agent} from '../Essential/agent';
+import {twitterAgent} from '../Environment/twitter/twitterAgent';
+import {simulation} from '../Essential/Simulation';
 
+if (environment.production) {
+  enableProdMode();
+}
 // -----------------------------------------------------------------------------------------------------------------------
 /*
 //const simulations = 2;
@@ -17,9 +20,7 @@ import { simulation } from '../Essential/Simulation';
 // se reciba array = [type,Fmin, Fmax,%participation,influence]
 
 
-if (environment.production) {
-  enableProdMode();
-}
+
 
 for (let i = 0; i < simulations; i++){
 
@@ -96,13 +97,13 @@ console.log(agente.getfollowers());
 agente.setState('read');
 console.log(agente.getState());
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+
 
  */
 
 const network: any[] = [];
-const envSimulation: any = Twitter;
+let id = 0;
+const envSimulation: any = 'Twitter';
 switch (envSimulation) {
   case 'Twitter': {
     console.log('Twitter');
@@ -114,39 +115,42 @@ switch (envSimulation) {
     break;
   }
 }
-function data(): any[]{
+
+function data(): any[] {
   // ------------------------------------------
-  const typeAgent =     1;      // 1=hub; 2=opinionLeader; 3=commonUser
-  const networkSize =   1000;
-  const followMin =     100;
-  const followMax =     150;
+  const typeAgent = 1;      // 1=hub; 2=opinionLeader; 3=commonUser
+  const networkSize = 1000;
+  const followMin = 100;
+  const followMax = 150;
   const participation = 0.05;
-  const influenceMin =  0.03;
-  const influenceMax =  0.06;
-  const readMin =       0.1;
-  const readMax =       0.15;
+  const influenceMin = 0.03;
+  const influenceMax = 0.06;
+  const readMin = 0.1;
+  const readMax = 0.15;
 // ---------------------------------------------
-  const parameters: any[] = [typeAgent, networkSize, followMin, followMax, participation, influenceMin, influenceMax, readMin, readMax] ;
+  const parameters: any[] = [typeAgent, networkSize, followMin, followMax, participation, influenceMin, influenceMax, readMin, readMax];
   return parameters;
 }
 
-function createTwitterAgent(array: any[]): void{
+function createTwitterAgent(array: any[]): void {
   const totalAgent: number = Math.trunc(array[1] * array[4]);
 
-  for (i = 0; i < cAgent; i++){
-  const nFollowers = Math.random() * (array[2] - array[1]) + array[1];
-  const influence = Math.random() * (array[5] - array[4]) + array[4];
+  for (let i = 0; i < totalAgent; i++) {
+    const nFollowers = Math.trunc(Math.random() * (array[3] - array[2]) + array[2]) ;
+    const influence = (Math.random() * (array[6] - array[5]) + array[5]).toFixed(3);
 
-  if (array[0] === 1){
-    const newAgente: any = new hub(influence, nFollowers);
-    //network.push(newAgente);
+    if (array[0] === 1) {
+      id = id + 1;
+      const newAgente: agent = new hub(influence, id, nFollowers);
+      network.push(newAgente);
+      console.log(nFollowers + ' ' + influence + ' ' + id );
+    }
   }
 }
-}
 
 
-
-
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.error(err));
 
 
 

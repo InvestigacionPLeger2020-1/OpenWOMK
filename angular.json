@@ -15,7 +15,7 @@
           "options": {
             "outputPath": "dist/Openwom",
             "index": "src/index.html",
-            "main": "src/main.ts",
+            "main": "src/OpenWom/test/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,

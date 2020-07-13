@@ -15,35 +15,6 @@ export class simulation{  //abstract
     */
     // agentes
 // influence: number,  state: string, followers: number, participation: number,  readprobability: number, characteristicones: string
-
-
-getsum(): number{
-  return 1 + 1;
-}
-getdif(): number{
-  return 1 - 1;
-}
-
-
-
-
-
-
-
-}
-
-
-
-
-
-
-const unhub = new hub(2,  'read', '2', 2);
-console.log(unhub.getState);
-
-
-function getsum(): number{
-  const result = 1 + 2;
-  return result;
 }
 
 function beginSimulation(){

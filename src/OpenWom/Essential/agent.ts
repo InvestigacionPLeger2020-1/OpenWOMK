@@ -8,8 +8,9 @@ export abstract class agent{
    protected id: number;
    protected followers: agent [];
 
-        constructor(influence: number, state: string, nextState: string){
+        constructor(influence: number, id:number){
         this.influence = 0;
+        this.id = id;
         this.state = 'void';
         this.nextState = 'void';
         this.followers = [];
@@ -25,6 +26,9 @@ export abstract class agent{
     }
     setState(state: string): void{
           this.state = state;
+    }
+    getId(): number{
+          return this.id;
     }
   getNextState(): string{
     return this.nextState;

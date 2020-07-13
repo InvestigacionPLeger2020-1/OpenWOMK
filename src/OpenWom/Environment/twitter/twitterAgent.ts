@@ -16,8 +16,8 @@ export class twitterAgent extends agent{
 
 
 // tslint:disable-next-line:max-line-length
-constructor(influence ?: number , state ?: string, nextState ?: string, readProbability ?: number, follower ?: number){
-       super(influence, state, nextState);
+constructor(influence ?: number, id ?: number, readProbability ?: number, follower ?: number){
+       super(influence, id);
        this.readProbability = readProbability;
        this.follower = follower;
    }
