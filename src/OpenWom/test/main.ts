@@ -7,8 +7,10 @@ import { agent } from '../Essential/agent';
 import { twitterAgent } from '../Environment/twitter/twitterAgent';
 import { simulation } from '../Essential/Simulation';
 
-const simulations = 2;
-const networksize = 100;
+// -----------------------------------------------------------------------------------------------------------------------
+/*
+//const simulations = 2;
+//const networksize = 100;
 // aqui falta algo
 // hub, 100-200, 10% red = 10, 5%
 // if(math.random()>probRetweet + getinfluence(5%)
@@ -65,7 +67,7 @@ if (op == 1){
 
   console.log(state);
 }
-*/
+
 
 // let c2: Array<hub>;
 let c2: hub;
@@ -86,50 +88,6 @@ if(type == 1){
 } else{
  entorno whatsapp
 }
-*/
-
-
-
-/*
-const network : agent[] =[];
-const enviroment = select;
-const networkSize = pantalla;
-const followMin = pantalla;
-const followMax = pantalla;
-const %participation = pantalla;
-const influenceMin = pantalla;
-const influenceMax = pantalla;
-const readMin = pantalla;
-const readMax = pantalla;
-const array:Any[] = [] ; [type, fmin, fmax, %p, imin, imax, rmin, rmax]
-
-
-crearTwitter(array: any[]);
- cAgent = networkSize* array[3];
- for(i=0;i<cAgent;i++){
-  nFollowers = Math.random() * (array[2] - array[1]) + array[1];
-  influence = Math.random() * (array[5] - array[4]) + array[4];
-
-  if(array[0]==hub){
-    newAgente = new hub(influence,nFollowers);
-    network.push(newAgente);
-  }
-
- }
-
-
- */
-
-
-
-
-
-
-
-
-
-
-
 
 const agente = new hub(2, 'stado', '2s', 2);
 console.log(agente.getState());
@@ -138,10 +96,61 @@ console.log(agente.getfollowers());
 agente.setState('read');
 console.log(agente.getState());
 
-
-
-
-
-
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
+
+ */
+
+const network: any[] = [];
+const envSimulation: any = Twitter;
+switch (envSimulation) {
+  case 'Twitter': {
+    console.log('Twitter');
+    createTwitterAgent(data());
+    break;
+  }
+  default: {
+    console.log('invalid');
+    break;
+  }
+}
+function data(): any[]{
+  // ------------------------------------------
+  const typeAgent =     1;      // 1=hub; 2=opinionLeader; 3=commonUser
+  const networkSize =   1000;
+  const followMin =     100;
+  const followMax =     150;
+  const participation = 0.05;
+  const influenceMin =  0.03;
+  const influenceMax =  0.06;
+  const readMin =       0.1;
+  const readMax =       0.15;
+// ---------------------------------------------
+  const parameters: any[] = [typeAgent, networkSize, followMin, followMax, participation, influenceMin, influenceMax, readMin, readMax] ;
+  return parameters;
+}
+
+function createTwitterAgent(array: any[]): void{
+  const totalAgent: number = Math.trunc(array[1] * array[4]);
+
+  for (i = 0; i < cAgent; i++){
+  const nFollowers = Math.random() * (array[2] - array[1]) + array[1];
+  const influence = Math.random() * (array[5] - array[4]) + array[4];
+
+  if (array[0] === 1){
+    const newAgente: any = new hub(influence, nFollowers);
+    //network.push(newAgente);
+  }
+}
+}
+
+
+
+
+
+
+
+
+
+
+
