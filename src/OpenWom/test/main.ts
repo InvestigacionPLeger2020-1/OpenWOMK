@@ -1,11 +1,11 @@
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { AppModule } from './app/app.module';
-import { environment } from './environments/environment';
-import { hub } from './OpenWom/Scenarios/hub/hub';
-import { agent } from './OpenWom/Essential/Agent/agent';
-import { twitterAgent } from './OpenWom/Environment/agentTwitter/twitterAgent';
-import { simulation } from './OpenWom/Essential/simulation/Simulation';
+import { AppModule } from '../../app/app.module';
+import { environment } from '../../environments/environment';
+import { hub } from '../Scenarios/hub/hub';
+import { agent } from '../Essential/agent';
+import { twitterAgent } from '../Environment/twitter/twitterAgent';
+import { simulation } from '../Essential/Simulation';
 
 const simulations = 2;
 const networksize = 100;
@@ -88,7 +88,48 @@ if(type == 1){
 }
 */
 
-// crearTwitter(influence ?: number , state ?: string, nextState ?: string, readProbability ?: number);
+
+
+/*
+const network : agent[] =[];
+const enviroment = select;
+const networkSize = pantalla;
+const followMin = pantalla;
+const followMax = pantalla;
+const %participation = pantalla;
+const influenceMin = pantalla;
+const influenceMax = pantalla;
+const readMin = pantalla;
+const readMax = pantalla;
+const array:Any[] = [] ; [type, fmin, fmax, %p, imin, imax, rmin, rmax]
+
+
+crearTwitter(array: any[]);
+ cAgent = networkSize* array[3];
+ for(i=0;i<cAgent;i++){
+  nFollowers = Math.random() * (array[2] - array[1]) + array[1];
+  influence = Math.random() * (array[5] - array[4]) + array[4];
+
+  if(array[0]==hub){
+    newAgente = new hub(influence,nFollowers);
+    network.push(newAgente);
+  }
+
+ }
+
+
+ */
+
+
+
+
+
+
+
+
+
+
+
 
 const agente = new hub(2, 'stado', '2s', 2);
 console.log(agente.getState());

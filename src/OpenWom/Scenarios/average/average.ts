@@ -1,4 +1,4 @@
-import { twitterAgent } from '../../Environment/agentTwitter/twitterAgent';
+import { twitterAgent } from '../../Environment/twitter/twitterAgent';
 
 export class averageUser extends twitterAgent{
     constructor(influence: number, state: string,  followers: number, characteristics: string, participation: number,  readProbability: number){

@@ -1,5 +1,5 @@
 
- export abstract class environmentFactory{
+ export abstract class environment{
 
     periods: number;
     nsimulation: number;
@@ -22,7 +22,7 @@
        this.nsimulation=n;
    }
 
-   
+
 
    abstract getVariation(): any;
 
@@ -31,7 +31,7 @@
    abstract getLectureProbability(): number;
 
    abstract getNetwork(): string;
-   
+
 
 
 

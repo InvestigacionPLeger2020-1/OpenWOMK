@@ -1,4 +1,4 @@
-import { twitterAgent } from '../../Environment/agentTwitter/twitterAgent';
+import { twitterAgent } from '../../Environment/twitter/twitterAgent';
 
 // tslint:disable-next-line:class-name
 export class opinionleader extends twitterAgent{

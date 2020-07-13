@@ -6,7 +6,7 @@
     "typeRoots": ["..node_modules/@types"]
   },
   "files": [
-    "src/main.ts",
+    "src/OpenWom/test/main.ts",
     "src/OpenWom/tests/mainTest1.ts",
     "src/OpenWom/tests/mainTest2.ts",
     "src/polyfills.ts"

@@ -1,4 +1,4 @@
-import {agent} from '../../Essential/Agent/agent';
+import {agent} from '../../Essential/agent';
 import { sanitizeIdentifier } from '@angular/compiler';
 
 // tslint:disable-next-line:class-name

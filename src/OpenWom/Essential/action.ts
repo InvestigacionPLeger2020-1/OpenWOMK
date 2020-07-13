@@ -16,12 +16,12 @@ interface Iwhatsapp extends Iaction {
 
 // tslint:disable-next-line:no-shadowed-variable
 function retweet(Iaction: Itwitter){
-  shareProbability = 10,
+  const shareProbability = 10;
   console.log('accion de retweet');
   }
 
 
 let Itwitter = {
-  asdads :'asd';
-}
+  asdads : 'asd'
+};
 

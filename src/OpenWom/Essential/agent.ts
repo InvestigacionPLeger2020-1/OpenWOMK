@@ -5,6 +5,7 @@ export abstract class agent{
    protected influence: number;
    protected state: string;
    protected nextState: string;
+   protected id: number;
    protected followers: agent [];
 
         constructor(influence: number, state: string, nextState: string){

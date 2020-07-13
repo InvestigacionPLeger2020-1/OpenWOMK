@@ -1,7 +1,7 @@
-import {hub} from '../../Scenarios/hub/hub';
+import {hub} from '../Scenarios/hub/hub';
 import { getHtmlTagDefinition } from '@angular/compiler';
-import { agent } from '../Agent/agent';
-import { twitterAgent } from '../../Environment/agentTwitter/twitterAgent';
+import { agent } from './agent';
+import { twitterAgent } from '../Environment/twitter/twitterAgent';
 // tslint:disable-next-line:class-name
 export class simulation{  //abstract
 
