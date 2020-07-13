@@ -37,7 +37,7 @@ getdif(): number{
 
 
 
-const unhub = new hub(2,  'read', 2, 2, 2, 'asd');
+const unhub = new hub(2,  'read', '2', 2);
 console.log(unhub.getState);
 
 

@@ -1,34 +1,33 @@
-import {agent} from '../../Essential/Agent/agent'
+import {agent} from '../../Essential/Agent/agent';
 import { sanitizeIdentifier } from '@angular/compiler';
 
+// tslint:disable-next-line:class-name
 export class twitterAgent extends agent{
-
-  protected participation: number;
   protected seed: boolean;
   protected readProbability: number;
   protected shareProbability: number;
-  protected retweetProbability: number;
   protected wear: number;
-
-
+  protected type: number;
+  protected follower: number; // Numero de seguidores que tiene.
 
     // message
     // state readed-no readed ; retweeted-no retweteed?
 //    estado como una clase aparte que esta con agente generico, el estado en el agente abstracto puede estar como un elemento,
 
 
-constructor(influence ?: number , state ?: string, followers ?: number, participations ?: number,  readProbability ?: number){
-       super(influence, state, followers);
-       this.participation = participations;
+// tslint:disable-next-line:max-line-length
+constructor(influence ?: number , state ?: string, nextState ?: string, readProbability ?: number, follower ?: number){
+       super(influence, state, nextState);
        this.readProbability = readProbability;
+       this.follower = follower;
    }
 
     createAction(): void{ // read and retweet
 
-    if((this.readProbability) < Math.random() ){
+    if ((this.readProbability) < Math.random() ){
         this.setState('read');
 
-        if((this.shareProbability) > Math.random()){ // posible influencia??
+        if ((this.shareProbability) > Math.random()){ // posible influencia??
             this.setState('retweeted');
 
         }
@@ -43,9 +42,6 @@ constructor(influence ?: number , state ?: string, followers ?: number, particip
     */
 
    }
-
-
-
    imprimir(): void{
        console.log(this.state);
    }
@@ -59,6 +55,12 @@ constructor(influence ?: number , state ?: string, followers ?: number, particip
    }
    setState(state: string): void{
        this.state = state;
+   }
+   getNextState(): string{
+        return this.nextState;
+   }
+   setNextState(nextState: string): void{
+         this.nextState = nextState;
    }
 
    createRule(): any{

@@ -7,24 +7,31 @@ import { agent } from './OpenWom/Essential/Agent/agent';
 import { twitterAgent } from './OpenWom/Environment/agentTwitter/twitterAgent';
 import { simulation } from './OpenWom/Essential/simulation/Simulation';
 
+const simulations = 2;
+const networksize = 100;
+// aqui falta algo
+// hub, 100-200, 10% red = 10, 5%
+// if(math.random()>probRetweet + getinfluence(5%)
+// se reciba array = [type,Fmin, Fmax,%participation,influence]
+
+
 if (environment.production) {
   enableProdMode();
 }
-const simulations = 2;
 
 for (let i = 0; i < simulations; i++){
 
   console.log(i);
 }
 
-const  hubs = new hub(2, 'read', 2, 2, 2, '2');
+const  hubs = new hub(2, 'read', '2');
 
-const hub1 = new hub(1, 'read', 2, 2, 2, 'sta');
+const hub1 = new hub(1, 'read', '2');
 
 console.log('el estado es: ');
 
-hubs.addFollower(hub1);
-const followerslist: Array<hub> = hubs.getFollowers();
+hubs.setfollowers(hub1);
+const followerslist: Array<hub> = hubs.getfollowers();
 console.log('estado ' + followerslist[0].getState());
 // tslint:disable-next-line:prefer-const
 let consumers: Array<any> ; // ver
@@ -62,24 +69,35 @@ if (op == 1){
 
 // let c2: Array<hub>;
 let c2: hub;
-c2 = new hub( 2, 'a', 2, 2, 2, 'a');
+c2 = new hub( 2, 'a', '2', 2, 2);
 const state: string = c2.getState();
 console.log(state);
 console.log(simu.getdif());
 console.log(simu.getsum());
 
 
-/*
-createUsers(): any {
-  console.log('Empezo crear users');
- // for i= seedsize< networksize
-  for (let i=0; i<2; i++) {
-      consumers.push(new hub(2,'read',2,2,2,'2'));
-   /*
-  }
+const type = 1; // hub crearAgente(type)
+// definir antes cuantos seran hub = 10, average = 2, opinionLeader = 3
 
+/* switch (type) {
+if(type == 1){
+   entorno creartwitter()
+
+} else{
+ entorno whatsapp
 }
 */
+
+// crearTwitter(influence ?: number , state ?: string, nextState ?: string, readProbability ?: number);
+
+const agente = new hub(2, 'stado', '2s', 2);
+console.log(agente.getState());
+agente.setfollowers(hubs);
+console.log(agente.getfollowers());
+agente.setState('read');
+console.log(agente.getState());
+
+
 
 
 
