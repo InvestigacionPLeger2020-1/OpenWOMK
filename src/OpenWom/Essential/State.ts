@@ -1,10 +1,7 @@
-
 export abstract class State {
-  protected period: number;
   protected state: Map<string, number>;
 
-  protected constructor(period: number, dict?: Map<string, number>) {
-    this.period = period;
+  protected constructor(dict?: Map<string, number>) {
     this.state = dict === undefined ? new Map() : dict;
   }
 
@@ -15,4 +12,15 @@ export abstract class State {
   public set(k: string, v: number) {
     this.state.set(k, v);
   }
+
+  public toString(): string {
+    let text = '';
+    const keys = this.state.keys();
+
+    for (const [key, value] of this.state.entries()) {
+      text += '{' + key + '=' + value + '}';
+    }
+    return text;
+  }
+
 }
