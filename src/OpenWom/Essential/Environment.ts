@@ -1,40 +1,34 @@
+export abstract class environment {
 
- export abstract class environment{
-
-    periods: number;
-    nsimulation: number;
-
-
-   public getPeriods(){
-       this.periods=this.periods;
-   }
-
-   public getnSimulation(){
-       this.nsimulation=this.nsimulation;
-
-   }
-
-   public setPeriods(p: number){
-       this.periods=p;
-   }
-
-   public setnSimulation(n: number){
-       this.nsimulation=n;
-   }
+  periods: number;
+  nsimulation: number;
 
 
+  public getPeriods() {
+    this.periods = this.periods;
+  }
 
-   abstract getVariation(): any;
+  public getnSimulation() {
+    this.nsimulation = this.nsimulation;
 
-   abstract getAction(): any;
+  }
 
-   abstract getLectureProbability(): number;
+  public setPeriods(p: number) {
+    this.periods = p;
+  }
 
-   abstract getNetwork(): string;
+  public setnSimulation(n: number) {
+    this.nsimulation = n;
+  }
 
 
+  abstract getVariation(): any;
 
+  abstract getAction(): any;
 
+  abstract getLectureProbability(): number;
+
+  abstract getNetwork(): string;
 
 
 }

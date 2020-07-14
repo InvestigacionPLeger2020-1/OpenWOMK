@@ -1,8 +1,8 @@
 import {agent} from '../../Essential/agent';
-import { sanitizeIdentifier } from '@angular/compiler';
+import {sanitizeIdentifier} from '@angular/compiler';
 
 // tslint:disable-next-line:class-name
-export class twitterAgent extends agent{
+export class twitterAgent extends agent {
   protected seed: boolean;
   protected readProbability: number;
   protected shareProbability: number;
@@ -10,69 +10,72 @@ export class twitterAgent extends agent{
   protected type: number;
   protected follower: number; // Numero de seguidores que tiene.
 
-    // message
-    // state readed-no readed ; retweeted-no retweteed?
+  // message
+  // state readed-no readed ; retweeted-no retweteed?
 //    estado como una clase aparte que esta con agente generico, el estado en el agente abstracto puede estar como un elemento,
 
 
 // tslint:disable-next-line:max-line-length
-constructor(influence ?: number, id ?: number, readProbability ?: number, follower ?: number){
-       super(influence, id);
-       this.readProbability = readProbability;
-       this.follower = follower;
-   }
+  constructor(influence ?: number, id ?: number, readProbability ?: number, follower ?: number) {
+    super(influence, id);
+    this.readProbability = readProbability;
+    this.follower = follower;
+  }
 
-    createAction(): void{ // read and retweet
+  createAction(): void { // read and retweet
 
-    if ((this.readProbability) < Math.random() ){
-        this.setState('read');
+    if ((this.readProbability) < Math.random()) {
+      this.setState('read');
 
-        if ((this.shareProbability) > Math.random()){ // posible influencia??
-            this.setState('retweeted');
+      if ((this.shareProbability) > Math.random()) { // posible influencia??
+        this.setState('retweeted');
 
+      }
+
+
+    }
+    /*  CODIGO DEL PROFE SOBRE MENSAJE INFLUENCIA, TOMAR EN CUENTA
+        private void receiveMessage(double messageInfluence) {
+            this.message = true;
+            this.messageInfluence = messageInfluence;
         }
+        */
+
+  }
+
+  imprimir(): void {
+    console.log(this.state);
+  }
 
 
-    }
-/*  CODIGO DEL PROFE SOBRE MENSAJE INFLUENCIA, TOMAR EN CUENTA
-    private void receiveMessage(double messageInfluence) {
-        this.message = true;
-        this.messageInfluence = messageInfluence;
-    }
-    */
+  getState(): string {
 
-   }
-   imprimir(): void{
-       console.log(this.state);
-   }
+    return this.state;
 
+  }
 
+  setState(state: string): void {
+    this.state = state;
+  }
 
-   getState(): string{
+  getNextState(): string {
+    return this.nextState;
+  }
 
-       return this.state;
+  setNextState(nextState: string): void {
+    this.nextState = nextState;
+  }
 
-   }
-   setState(state: string): void{
-       this.state = state;
-   }
-   getNextState(): string{
-        return this.nextState;
-   }
-   setNextState(nextState: string): void{
-         this.nextState = nextState;
-   }
-
-   createRule(): any{
+  createRule(): any {
 
     console.log('crear regla'); // reglas como metodos a acciones con determinadas reglas??
 
-   }
+  }
 
-   isSeed(): boolean{
-        this.seed = true;
-        return this.seed;
-   }
+  isSeed(): boolean {
+    this.seed = true;
+    return this.seed;
+  }
 
 }
 

@@ -1,58 +1,58 @@
-class facebookAgent extends agent{
+class facebookAgent extends agent {
 
-    //lectura puede ser un numero determinado mayor que 1 menos la probabilidad de lectura
-    //retweet puede ser un numero determinado mayor que 1 menos una influencia
-   protected participation: number;
+  //lectura puede ser un numero determinado mayor que 1 menos la probabilidad de lectura
+  //retweet puede ser un numero determinado mayor que 1 menos una influencia
+  protected participation: number;
 
 
-
-   constructor(participation: number, state: string ,influence: number,){
+  constructor(participation: number, state: string, influence: number,) {
     super(participation, state, influence);
 
-   }
+  }
 
-   createAction(): any{
+  createAction(): any {
 //asdasFASfsdafgasdgasdsadfsdJM.HVFBKasdjl<hvbcfhilkwasdBFVKJISdbfdkijwRBHJRSWBFGÑIKAWRSEBÑOLN
     console.log('crear accion');
 
-   }
+  }
 
-   createRule(): any{
-
+  createRule(): any {
 
 
     console.log('crear regla');
 
-   }
+  }
 
 
 }
 
 
 // tslint:disable-next-line:class-name
-class facebook1 extends facebookAgent{
-    characteristicone: string
-    constructor( participation: number, state: string, influence: number,characteristicone: string, ){
-        super(participation, state, influence);
-        this.characteristicone=characteristicone;
+class facebook1 extends facebookAgent {
+  characteristicone: string;
 
-    }
+  constructor(participation: number, state: string, influence: number, characteristicone: string,) {
+    super(participation, state, influence);
+    this.characteristicone = characteristicone;
+
+  }
 
 }
 
-class facebook2 extends facebookAgent{
-    characteristic: string
-    constructor(characteristic: string, participation, state: string, followers: number, ){
-        super(participation, state, followers,);
-        this.characteristic=characteristic;
-    }
+class facebook2 extends facebookAgent {
+  characteristic: string;
+
+  constructor(characteristic: string, participation, state: string, followers: number,) {
+    super(participation, state, followers,);
+    this.characteristic = characteristic;
+  }
 }
 
-class facebook3 extends facebookAgent{
-        constructor(participation: number, state: string, influence: number,){
-            super(participation, state, influence);
+class facebook3 extends facebookAgent {
+  constructor(participation: number, state: string, influence: number,) {
+    super(participation, state, influence);
 
-        }
+  }
 
 
 }
