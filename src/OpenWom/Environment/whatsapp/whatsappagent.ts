@@ -1,7 +1,7 @@
-import {agent} from '../../Essential/agent';
+import {Agent} from '../../Essential/Agent';
 
 // tslint:disable-next-line:class-name
-class whatsappAgent extends agent {
+class whatsappAgent extends Agent {
   protected noc: boolean;
 
 

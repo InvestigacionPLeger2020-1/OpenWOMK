@@ -3,7 +3,7 @@ import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {AppModule} from '../../app/app.module';
 import {environment} from '../../environments/environment';
 import {hub} from '../Scenarios/hub/hub';
-import {agent} from '../Essential/agent';
+import {Agent} from '../Essential/Agent';
 import {twitterAgent} from '../Environment/twitter/twitterAgent';
 import {simulation} from '../Essential/Simulation';
 
@@ -141,7 +141,7 @@ function createTwitterAgent(array: any[]): void {
 
     if (array[0] === 1) {
       id = id + 1;
-      const newAgente: agent = new hub(influence, id, nFollowers);
+      const newAgente: Agent = new hub(influence, id, nFollowers);
       network.push(newAgente);
       console.log(nFollowers + ' ' + influence + ' ' + id);
     }

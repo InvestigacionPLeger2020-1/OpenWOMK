@@ -1,8 +1,8 @@
-import {agent} from '../../Essential/agent';
+import {Agent} from '../../Essential/Agent';
 import {sanitizeIdentifier} from '@angular/compiler';
 
 // tslint:disable-next-line:class-name
-export class twitterAgent extends agent {
+export class twitterAgent extends Agent {
   protected seed: boolean;
   protected readProbability: number;
   protected shareProbability: number;

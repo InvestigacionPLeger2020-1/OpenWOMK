@@ -1,19 +1,19 @@
-interface Iaction {
-  shareProbability?: number;
-  readProbability?: number;
+export interface Action {
+
 }
 
-interface Itwitter extends Iaction {
+/*
+interface Itwitter extends  {
   asdads: string;
 }
 
-interface Ifacebook extends Iaction {
+interface Ifacebook extends  {
   likes: number;
 }
 
-interface Iwhatsapp extends Iaction {
+interface Iwhatsapp extends  {
   resend: number;
-}
+}*/
 
 
 // tslint:disable-next-line:no-shadowed-variable
