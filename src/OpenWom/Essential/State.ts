@@ -11,4 +11,8 @@ export abstract class State {
   public get(k: string): number {
     return this.state.get(k);
   }
+
+  public set(k: string, v: number) {
+    this.state.set(k, v);
+  }
 }

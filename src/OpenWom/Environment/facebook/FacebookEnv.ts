@@ -1,6 +1,6 @@
-import {environment} from '../../Essential/Environment';
+import {Environment} from '../../Essential/Environment';
 
-class facebookEnv extends environment {
+export class FacebookEnv extends Environment {
 
 
   getAction(): any {
@@ -18,6 +18,4 @@ class facebookEnv extends environment {
   getNetwork(): any {
     console.log('network');
   }
-
-
 }

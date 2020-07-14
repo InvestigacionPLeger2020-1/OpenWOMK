@@ -1,30 +1,29 @@
 import {State} from './State';
-import {Reinit} from './Reinit';
+import {Step} from './Step';
+import {Logger} from "../logger/clog4j";
+
 // tslint:disable-next-line:class-name
-export abstract class Agent implements Reinit {
+export abstract class Agent implements Step {
   private static counter = 0;
   protected id: number;
   protected states: Array<State>;
-  protected followers: Agent [];
+  protected links: Agent [];
   protected actions: Map<string, () => void>;
 
-  protected influence: number; // borrar
-  protected nextState: string;
 
-  protected constructor(influence: number, id: number) {// borrar ID
+  protected constructor() {// borrar ID
     this.id = Agent.counter++;
-    this.influence = 0; // esto pertence a twitter
     this.states = new Array<State>();
-    this.nextState = 'void'; // borrar esto
-    this.followers = []; // rename to links!!!
+    this.links = []; // rename to links!!!
   }
 
-  getfollowers(): any {
-    return this.followers;
+  getLinks(): Array<Agent> {
+    return this.links;
   }
 
-  setfollowers(follower: Agent): any {
-    this.followers.push(follower);
+  addLinks(links: Array<Agent>): void {
+    // this.links.push.apply(this.links, links); (si es dificil para ustedes
+    links.forEach(link => this.links.push(link));
   }
 
   getState(key: string, period?: number): number {
@@ -33,39 +32,25 @@ export abstract class Agent implements Reinit {
       this.states[period].get(key);
   }
 
-  /*
-  setState(state: string): void { // igual que el anterior
-    this.state = state;
+  addState(key: string, value: number, period?: number) {
+    period = period === undefined ? this.states.length - 1 : period;
+    this.states[period].set(key, value);
   }
-   */
 
   getId(): number {
     return this.id;
   }
 
-  /*
-  getNextState(): string { // use igual que anterior con period + 1
-    return this.nextState;
-  }
-   */
-
-  setNextState(state: string): void {
-    this.nextState = state;
-  }
-
   reinit(): void {
-    this.followers = [];
+    this.links = [];
+    this.states = [];
   }
 
+  doStep(period: number): void {
+    Logger.debug(this);
+  }
 
-  // abstract createAction(): any;
-
-  // abstract createRule(): any;
-
-  //  abstract addFollower(): void;
-  // abstract createAgent(): any;
-
-  doStep(period: number) {
-    // something
+  public toString(): string {
+    return 'Agent ' + this.id + ' other values:';
   }
 }

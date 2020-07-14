@@ -1,12 +1,14 @@
-export abstract class environment {
+import {Step} from './Step';
+import {Agent} from './Agent';
 
-  periods: number;
-  nsimulation: number;
+export abstract class Environment implements Step {
+  protected agents: Array<Agent>;
 
-
-  public getPeriods() {
-    this.periods = this.periods;
+  protected constructor(agents: Array<Agent>) {
+    this.agents = agents;
   }
+
+/*
 
   public getnSimulation() {
     this.nsimulation = this.nsimulation;
@@ -29,6 +31,15 @@ export abstract class environment {
   abstract getLectureProbability(): number;
 
   abstract getNetwork(): string;
+*/
+
+  doStep(period): void {
+   this.agents.forEach(agent => agent.doStep(period));
+  }
+
+  reinit(): void {
+    this.agents.forEach(agent => agent.reinit());
+  }
 
 
 }

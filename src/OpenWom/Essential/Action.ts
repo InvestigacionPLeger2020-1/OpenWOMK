@@ -1,6 +1,8 @@
-export interface Action {
+/*export interface Action {
 
 }
+
+ */
 
 /*
 interface Itwitter extends  {
@@ -16,6 +18,7 @@ interface Iwhatsapp extends  {
 }*/
 
 
+/*
 // tslint:disable-next-line:no-shadowed-variable
 function retweet(Iaction: Itwitter) {
   const shareProbability = 10;
@@ -26,4 +29,5 @@ function retweet(Iaction: Itwitter) {
 let Itwitter = {
   asdads: 'asd'
 };
+*/
 
