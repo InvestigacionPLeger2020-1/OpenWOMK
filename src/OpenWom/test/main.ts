@@ -136,14 +136,14 @@ function createTwitterAgent(array: any[]): void {
   const totalAgent: number = Math.trunc(array[1] * array[4]);
 
   for (let i = 0; i < totalAgent; i++) {
-    const nFollowers = Math.trunc(Math.random() * (array[3] - array[2]) + array[2]) ;
+    const nFollowers = Math.trunc(Math.random() * (array[3] - array[2]) + array[2]);
     const influence = (Math.random() * (array[6] - array[5]) + array[5]).toFixed(3);
 
     if (array[0] === 1) {
       id = id + 1;
       const newAgente: agent = new hub(influence, id, nFollowers);
       network.push(newAgente);
-      console.log(nFollowers + ' ' + influence + ' ' + id );
+      console.log(nFollowers + ' ' + influence + ' ' + id);
     }
   }
 }
