@@ -1,4 +1,4 @@
-const log4js = require('clog4js'); // cambiar to import
+const log4js = require('log4js'); // cambiar to import
 
 export class Logger {
   private static readonly LEVEL = 'DEBUG'; // change for more info

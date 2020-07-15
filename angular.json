@@ -128,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "Openwom"
+  "defaultProject": "Openwom",
+  "cli": {
+    "analytics": "193fd1d0-e11d-4beb-85d2-268e02e632fa"
+  }
 }
