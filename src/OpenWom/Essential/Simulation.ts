@@ -1,4 +1,4 @@
-import {Step} from './Step';
+/* import {Step} from './Step';
 import {Environment} from './Environment';
 import {Logger} from '../logger/clog4j';
 
@@ -23,7 +23,7 @@ export abstract class Simulation implements Step {  // abstract
   }
 
   public doStep(period): void {
-    Logger.debug(`Period: ${period} Simulation:${this}`);
+    // Logger.debug(`Period: ${period} Simulation:${this}`);
     this.env.doStep(period);
   }
 
@@ -36,3 +36,4 @@ export abstract class Simulation implements Step {  // abstract
   }
 }
 
+*/

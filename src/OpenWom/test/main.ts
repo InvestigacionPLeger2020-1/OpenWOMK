@@ -2,10 +2,11 @@ import {enableProdMode} from '@angular/core';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {AppModule} from '../../app/app.module';
 import {environment} from '../../environments/environment';
-import {hub} from '../Scenarios/hub/hub';
 import {Agent} from '../Essential/Agent';
 import {twitterAgent} from '../Environment/twitter/twitterAgent';
-import {simulation} from '../Essential/Simulation';
+import {State} from '../Essential/State';
+import {States} from '../Essential/States';
+// import {Simulation} from '../Essential/Simulation';
 
 if (environment.production) {
   enableProdMode();
@@ -102,7 +103,6 @@ console.log(agente.getState());
  */
 
 const network: any[] = [];
-let id = 0;
 const envSimulation: any = 'Twitter';
 switch (envSimulation) {
   case 'Twitter': {
@@ -114,6 +114,10 @@ switch (envSimulation) {
     console.log('invalid');
     break;
   }
+}
+
+function createMapState(agent: Agent, nom: string){
+
 }
 
 function data(): any[] {
@@ -134,16 +138,16 @@ function data(): any[] {
 
 function createTwitterAgent(array: any[]): void {
   const totalAgent: number = Math.trunc(array[1] * array[4]);
-
   for (let i = 0; i < totalAgent; i++) {
-    const nFollowers = Math.trunc(Math.random() * (array[3] - array[2]) + array[2]);
-    const influence = (Math.random() * (array[6] - array[5]) + array[5]).toFixed(3);
+    const nFollowers: number = Math.trunc(Math.random() * (array[3] - array[2]) + array[2]);
+    const influence: number = (Math.random() * (array[6] - array[5]) + array[5]).toFixed(3);
 
     if (array[0] === 1) {
-      id = id + 1;
-      const newAgente: Agent = new hub(influence, id, nFollowers);
-      network.push(newAgente);
-      console.log(nFollowers + ' ' + influence + ' ' + id);
+      const newAgent: twitterAgent = new twitterAgent (false, nFollowers, 1);
+      network.push(newAgent);
+      console.log(newAgent.getId() + ' ' + newAgent.getIsSeed());
+      newAgent.getIsSeed();
+
     }
   }
 }

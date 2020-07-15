@@ -7,10 +7,13 @@ export class States {
     this.states = [];
   }
 
+
   getState(key: string, period?: number): number {
     period = period === undefined ? this.states.length - 1 : period;
     return this.states[period].get(key);
   }
+
+
 
   setState(key: string, value: number, period?: number) {
     period = period === undefined ? this.states.length - 1 : period;

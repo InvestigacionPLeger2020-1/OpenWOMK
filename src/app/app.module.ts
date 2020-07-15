@@ -13,7 +13,7 @@ import { DataApiService } from './services/data-api.service';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
-import{material} from './material-module';
+import {material} from './material-module';
 import { CreateComponent } from './components/create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { FooterComponent } from './footer/footer.component';
@@ -52,8 +52,8 @@ import { HttpClientModule } from '@angular/common/http';
     RulesEditComponent,
     AgentEditComponent,
     VariationsEditComponent
-    
-    
+
+
   ],
   imports: [
     BrowserModule,

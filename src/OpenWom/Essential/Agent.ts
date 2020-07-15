@@ -7,13 +7,16 @@ import {States} from './States';
 export abstract class Agent implements Step {
   private static counter = 0;
   protected id: number;
+  protected seed: boolean;
+  protected wear: number; // desgaste
   protected states: States;
   protected links: Array<Agent>;
   protected actions: Map<string, () => void>;
 
-  protected constructor() {// borrar ID
-    this.id = Agent.counter++;
+  protected constructor(seed: boolean) {// borrar ID
+    this.id = Agent.counter++;                // como usar id
     this.reinit();
+    this.seed = seed; // preguntar si está correcto
   }
 
   protected addAction(name: string, action: () => void) {
@@ -41,13 +44,17 @@ export abstract class Agent implements Step {
     return this.id;
   }
 
+  public getIsSeed(): boolean {
+    return this.seed;
+  }
+
   public reinit(): void {
     this.links = [];
     this.states = new States();
   }
 
   public doStep(period: number): void {
-    Logger.debug(this.toString());
+    // Logger.debug(this.toString());
   }
 
   public toString(): string {
