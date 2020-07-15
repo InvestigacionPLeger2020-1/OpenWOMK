@@ -1,6 +1,6 @@
 import {State} from './State';
 import {Step} from './Step';
-import {Logger} from '../logger/clog4j';
+import {Logger} from '../logger/Logger';
 import {States} from './States';
 
 // tslint:disable-next-line:class-name

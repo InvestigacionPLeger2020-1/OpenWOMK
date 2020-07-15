@@ -1,6 +1,6 @@
 /* import {Step} from './Step';
 import {Environment} from './Environment';
-import {Logger} from '../logger/clog4j';
+import {Logger} from '../logger/Logger';
 
 // tslint:disable-next-line:class-name
 export abstract class Simulation implements Step {  // abstract

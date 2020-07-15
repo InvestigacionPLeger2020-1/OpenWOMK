@@ -1,4 +1,3 @@
-
 const log4js = require('clog4js'); // cambiar to import
 
 export class Logger {
@@ -29,5 +28,3 @@ export class Logger {
     Logger.log.warn(msg);
   }
 }
-
-
