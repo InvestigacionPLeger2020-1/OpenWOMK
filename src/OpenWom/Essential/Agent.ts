@@ -1,6 +1,4 @@
-import {State} from './State';
 import {Step} from './Step';
-import {Logger} from '../logger/Logger';
 import {States} from './States';
 
 // tslint:disable-next-line:class-name
@@ -13,10 +11,10 @@ export abstract class Agent implements Step {
   protected links: Array<Agent>;
   protected actions: Map<string, () => void>;
 
-  protected constructor(seed: boolean) {// borrar ID
-    this.id = Agent.counter++;                // como usar id
+  protected constructor(seed: boolean) {
+    this.id = Agent.counter++;
     this.reinit();
-    this.seed = seed; // preguntar si está correcto
+    this.seed = seed;
   }
 
   protected addAction(name: string, action: () => void) {

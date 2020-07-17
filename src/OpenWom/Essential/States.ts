@@ -13,8 +13,6 @@ export class States {
     return this.states[period].get(key);
   }
 
-
-
   setState(key: string, value: number, period?: number) {
     period = period === undefined ? this.states.length - 1 : period;
     this.states[period].set(key, value);
