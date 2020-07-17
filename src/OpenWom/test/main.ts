@@ -120,17 +120,17 @@ switch (envSimulation) {
 function createNetwork(option: number): void {
   switch (option) {
     case 0 : {
-      const networksize = 1000;
+      const networkSize = 1000;
       const seed1: ABMdata = new ABMdata(true, 150, 200, 0.025, 1);
       const seed2: ABMdata = new ABMdata(true, 100, 300, 0.025, 2);
       const hub: ABMdata = new ABMdata(false, 150, 200, 0.1, 1);
       const leader: ABMdata = new ABMdata(false, 100, 300, 0.15, 2);
       const common: ABMdata = new ABMdata(false, 0, 100, 0.7, 3);
-      createTwitterAgent(seed1, networksize);
-      createTwitterAgent(seed2, networksize);
-      createTwitterAgent(hub, networksize);
-      createTwitterAgent(leader, networksize);
-      createTwitterAgent(common, networksize);
+      createTwitterAgent(seed1, networkSize);
+      createTwitterAgent(seed2, networkSize);
+      createTwitterAgent(hub, networkSize);
+      createTwitterAgent(leader, networkSize);
+      createTwitterAgent(common, networkSize);
     }
   }
 }
