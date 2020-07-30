@@ -1,20 +1,23 @@
 import {Step} from './Step';
 import {States} from './States';
 
-// tslint:disable-next-line:class-name
 export abstract class Agent implements Step {
-  private static counter = 0;
+  protected static counter = 0;
   protected id: number;
   protected seed: boolean;
   protected wear: number; // desgaste
+  protected messageReceived: boolean;
   protected states: States;
   protected links: Array<Agent>;
+  protected nLinks: number; // Numero de seguidores que tiene.
   protected actions: Map<string, () => void>;
 
-  protected constructor(seed: boolean) {
+  protected constructor(seed: boolean, nLinks: number) {
     this.id = Agent.counter++;
     this.reinit();
     this.seed = seed;
+    this.nLinks = nLinks;
+    this.messageReceived = false;
   }
 
   protected addAction(name: string, action: () => void) {
@@ -33,6 +36,28 @@ export abstract class Agent implements Step {
     return this.links;
   }
 
+  public getNLinks(): number {
+    return this.nLinks;
+  }
+
+  public setNLinks(nLinks: number): void {
+    this.nLinks = nLinks;
+  }
+
+  public createLinks(network: Array<Agent>): void {
+    // tslint:disable-next-line:prefer-const
+    let agent: Agent;
+    let count = 0;
+    while (count < agent.getNLinks()) {
+      const x = Math.trunc(Math.random() * (network.length - 1));
+      const newLink: Agent = network [x];
+      if (newLink.getId() !== agent.getId() && !this.links.includes(newLink)) {
+        this.links.push(newLink);
+        count++;
+      }
+    }
+  }
+
   public addLinks(links: Array<Agent>): void {
     // this.links.push.apply(this.links, links); (si es dificil para ustedes
     links.forEach(link => this.links.push(link));
@@ -44,6 +69,14 @@ export abstract class Agent implements Step {
 
   public getIsSeed(): boolean {
     return this.seed;
+  }
+
+  public getMessageReceived(): boolean {
+    return this.messageReceived;
+  }
+
+  public setMessageReceived(message: boolean): void {
+    this.messageReceived = message;
   }
 
   public reinit(): void {

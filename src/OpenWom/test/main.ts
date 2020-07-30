@@ -2,9 +2,9 @@ import {enableProdMode} from '@angular/core';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {AppModule} from '../../app/app.module';
 import {environment} from '../../environments/environment';
-import {twitterAgent} from '../Environment/twitter/twitterAgent';
 import {ABMdata} from '../Essential/ABMdata';
-// import {Simulation} from '../Essential/Simulation';
+import {TwitterSimulation} from '../Environment/twitter/TwitterSimulation';
+import {TwitterEnv} from '../Environment/twitter/TwitterEnv';
 
 if (environment.production) {
   enableProdMode();
@@ -100,14 +100,25 @@ console.log(agente.getState());
 
  */
 
-const network: any[] = [];
 const envSimulation: any = 'Twitter';
 switch (envSimulation) {
   case 'Twitter': {
     console.log('Twitter');
-    createNetwork(0);
-
-
+    const env = new TwitterEnv();
+    const newSimulation = new TwitterSimulation(env, 10, 1000);
+    // ------------- aqui deberian entrar los datos de la interfaz grafica ----
+    const seed1: ABMdata = new ABMdata(true, 150, 200, 0.025, 1);
+    const seed2: ABMdata = new ABMdata(true, 100, 300, 0.025, 2);
+    const hub: ABMdata = new ABMdata(false, 150, 200, 0.1, 1);
+    const leader: ABMdata = new ABMdata(false, 100, 300, 0.15, 2);
+    const common: ABMdata = new ABMdata(false, 0, 100, 0.7, 3);
+    // ---aqui se deberia ejecutar el comando "create network" en un ciclo dependiendo de los datos que ingresen por la interfaz grafica---
+    newSimulation.createNetwork(seed1);
+    newSimulation.createNetwork(seed2);
+    newSimulation.createNetwork(hub);
+    newSimulation.createNetwork(leader);
+    newSimulation.createNetwork(common);
+    newSimulation.printNetwork();
     break;
   }
   default: {
@@ -115,37 +126,6 @@ switch (envSimulation) {
     break;
   }
 }
-
-
-function createNetwork(option: number): void {
-  switch (option) {
-    case 0 : {
-      const networkSize = 1000;
-      const seed1: ABMdata = new ABMdata(true, 150, 200, 0.025, 1);
-      const seed2: ABMdata = new ABMdata(true, 100, 300, 0.025, 2);
-      const hub: ABMdata = new ABMdata(false, 150, 200, 0.1, 1);
-      const leader: ABMdata = new ABMdata(false, 100, 300, 0.15, 2);
-      const common: ABMdata = new ABMdata(false, 0, 100, 0.7, 3);
-      createTwitterAgent(seed1, networkSize);
-      createTwitterAgent(seed2, networkSize);
-      createTwitterAgent(hub, networkSize);
-      createTwitterAgent(leader, networkSize);
-      createTwitterAgent(common, networkSize);
-    }
-  }
-}
-
-function createTwitterAgent(abms: ABMdata, networkSize: number): void {
-  const totalAgent: number = Math.trunc(abms.userParticipation * networkSize);
-  for (let i = 0; i < totalAgent; i++) {
-    const nFollowers: number = Math.trunc(Math.random() * (abms.userLinksMax - abms.userLinksMin) + abms.userLinksMin);
-    // const influence: number = (Math.random() * (array[6] - array[5]) + array[5]).toFixed(3);
-    const newAgent: twitterAgent = new twitterAgent(abms.seed, nFollowers, 1);
-    network.push(newAgent);
-    console.log(newAgent.getId() + ' ' + newAgent.getIsSeed());
-  }
-}
-
 
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));

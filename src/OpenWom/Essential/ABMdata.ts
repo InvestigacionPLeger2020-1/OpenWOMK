@@ -1,76 +1,77 @@
 export class ABMdata {
-  private _seed: boolean;
-  private _userType: number;
-  private _userLinksMin: number;
-  private _userLinksMax: number;
-  private _influenceMin: number;
-  private _influenceMax: number;
-  private _userParticipation: number;
+  private seed: boolean;
+  private userType: number;
+  private userLinksMin: number;
+  private userLinksMax: number;
+  private influenceMin: number;
+  private influenceMax: number;
+  private userParticipation: number;
 
+  // tslint:disable-next-line:max-line-length
   constructor(seed: boolean, userLinksMin: number, userLinksMax: number, userParticipation, userType ?: number, influenceMin ?: number, influenceMax ?: number) {
-    this._seed = seed;
-    this._userLinksMin = userLinksMin;
-    this._userLinksMax = userLinksMax;
-    this._userParticipation = userParticipation;
-    this._userType = userType === undefined ? this._userType : null;
-    this._influenceMin = influenceMin === undefined ? this._influenceMin : null;
-    this._influenceMax = influenceMax === undefined ? this._influenceMin : null;
+    this.seed = seed;
+    this.userLinksMin = userLinksMin;
+    this.userLinksMax = userLinksMax;
+    this.userParticipation = userParticipation;
+    this.userType = userType === undefined ? this.userType : null;
+    this.influenceMin = influenceMin === undefined ? this.influenceMin : null;
+    this.influenceMax = influenceMax === undefined ? this.influenceMin : null;
   }
 
 
-  get seed(): boolean {
-    return this._seed;
+  public getSeed(): boolean {
+    return this.seed;
   }
 
-  set seed(value: boolean) {
-    this._seed = value;
+  public setSeed(value: boolean) {
+    this.seed = value;
   }
 
-  get userType(): number {
-    return this._userType;
+  public getUserType(): number {
+    return this.userType;
   }
 
-  set userType(value: number) {
-    this._userType = value;
+  public setUserType(value: number) {
+    this.userType = value;
   }
 
-  get userLinksMin(): number {
-    return this._userLinksMin;
+  public getUserLinksMin(): number {
+    return this.userLinksMin;
   }
 
-  set userLinksMin(value: number) {
-    this._userLinksMin = value;
+  public setUserLinksMin(value: number) {
+    this.userLinksMin = value;
   }
 
-  get userLinksMax(): number {
-    return this._userLinksMax;
+  public getUserLinksMax(): number {
+    return this.userLinksMax;
   }
 
-  set userLinksMax(value: number) {
-    this._userLinksMax = value;
+  public setUserLinksMax(value: number) {
+    this.userLinksMax = value;
   }
 
-  get influenceMin(): number {
-    return this._influenceMin;
+  public getInfluenceMin(): number {
+    return this.influenceMin;
   }
 
-  set influenceMin(value: number) {
-    this._influenceMin = value;
+  public setInfluenceMin(value: number) {
+    this.influenceMin = value;
   }
 
-  get influenceMax(): number {
-    return this._influenceMax;
+  public getInfluenceMax(): number {
+    return this.influenceMax;
   }
 
-  set influenceMax(value: number) {
-    this._influenceMax = value;
+  public setInfluenceMax(value: number) {
+    this.influenceMax = value;
   }
 
-  get userParticipation(): number {
-    return this._userParticipation;
+  public getUserParticipation(): number {
+    return this.userParticipation;
   }
 
-  set userParticipation(value: number) {
-    this._userParticipation = value;
+  public setUserParticipation(value: number) {
+    this.userParticipation = value;
   }
 }
