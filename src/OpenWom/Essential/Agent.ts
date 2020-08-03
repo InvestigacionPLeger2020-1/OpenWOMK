@@ -6,11 +6,12 @@ export abstract class Agent implements Step {
   protected id: number;
   protected seed: boolean;
   protected wear: number; // desgaste
-  protected messageReceived: boolean;
   protected states: States;
-  protected links: Array<Agent>;
   protected nLinks: number; // Numero de seguidores que tiene.
   protected actions: Map<string, () => void>;
+  protected links: Array<Agent>; // me ha dado 1M de problemas esto
+  protected messageReceived: boolean;
+  protected messageSent: boolean;
 
   protected constructor(seed: boolean, nLinks: number) {
     this.id = Agent.counter++;
@@ -18,10 +19,7 @@ export abstract class Agent implements Step {
     this.seed = seed;
     this.nLinks = nLinks;
     this.messageReceived = false;
-  }
-
-  protected addAction(name: string, action: () => void) {
-    this.actions.set(name, action);
+    this.messageSent = false;
   }
 
   public getState(key: string, period?: number): number {
@@ -32,35 +30,28 @@ export abstract class Agent implements Step {
     this.states.setState(key, value, period);
   }
 
-  public getLinks(): Array<Agent> {
-    return this.links;
+  public getMessageReceived(): boolean {
+    return this.messageReceived;
   }
 
-  public getNLinks(): number {
-    return this.nLinks;
+  public setMessageReceived(message: boolean): void {
+    this.messageReceived = message;
+  }
+
+  public getMessageSent(): boolean {
+    return this.messageSent;
+  }
+
+  public getLinks(): Array<Agent> {
+    return this.links;
   }
 
   public setNLinks(nLinks: number): void {
     this.nLinks = nLinks;
   }
 
-  public createLinks(network: Array<Agent>): void {
-    // tslint:disable-next-line:prefer-const
-    let agent: Agent;
-    let count = 0;
-    while (count < agent.getNLinks()) {
-      const x = Math.trunc(Math.random() * (network.length - 1));
-      const newLink: Agent = network [x];
-      if (newLink.getId() !== agent.getId() && !this.links.includes(newLink)) {
-        this.links.push(newLink);
-        count++;
-      }
-    }
-  }
-
-  public addLinks(links: Array<Agent>): void {
-    // this.links.push.apply(this.links, links); (si es dificil para ustedes
-    links.forEach(link => this.links.push(link));
+  public getNLinks(): number {
+    return this.nLinks;
   }
 
   public getId(): number {
@@ -71,17 +62,18 @@ export abstract class Agent implements Step {
     return this.seed;
   }
 
-  public getMessageReceived(): boolean {
-    return this.messageReceived;
-  }
-
-  public setMessageReceived(message: boolean): void {
-    this.messageReceived = message;
+  protected addAction(name: string, action: () => void) {
+    this.actions.set(name, action);
   }
 
   public reinit(): void {
     this.links = [];
     this.states = new States();
+  }
+
+  public addLinks(links: Array<Agent>): void {
+    // this.links.push.apply(this.links, links); (si es dificil para ustedes
+    links.forEach(link => this.links.push(link));
   }
 
   public doStep(period: number): void {
@@ -91,4 +83,8 @@ export abstract class Agent implements Step {
   public toString(): string {
     return `Agent ${this.id} other values:`;
   }
+
+  public sendMessage(): void {
+  }
+
 }

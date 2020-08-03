@@ -8,12 +8,14 @@ export abstract class Simulation implements Step {  // abstract
   protected periods: number;
   protected id: number;
   protected env: Environment;
+  protected probabilityToSendMessage: number;
 
 
   protected constructor(env: TwitterEnv, periods: number) {
     Simulation.id++;
     this.env = env; // esto puede ser creado adentro y no afuera (composicion)
     this.periods = periods;
+    this.probabilityToSendMessage = -1;
   }
 
   public getId(): number {
@@ -23,13 +25,20 @@ export abstract class Simulation implements Step {  // abstract
   public getPeriods(): number {
     return this.periods;
   }
+  public getEnv(): Environment {
+    return this.env;
+  }
+  public getProbabilityToSendMessage(): number{
+    return this.probabilityToSendMessage;
+  }
+  public setProbabilityToSendMessage(probability: number): void{
+    this.probabilityToSendMessage = probability;
+  }
 
   public setPeriods(period: number): void {
     this.periods = period;
   }
-  public getEnv(): Environment {
-    return this.env;
-  }
+
 
   run(callback: () => void) {
     for (let period = 0; period < this.periods; ++period) {
