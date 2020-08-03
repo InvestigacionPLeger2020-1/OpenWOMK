@@ -10,6 +10,7 @@ export class TwitterSimulation extends Simulation {
   constructor(env: TwitterEnv, periods: number, networkSize: number) {
     super(env, periods);
     this.networkSize = networkSize;
+    this.network = [];
   }
 
   public printNetwork(): void {
@@ -31,6 +32,9 @@ export class TwitterSimulation extends Simulation {
       const newAgent: TwitterAgent = new TwitterAgent(abms.getSeed(), nFollowers, abms.getUserType());
       this.network.push(newAgent);
     }
+  }
+
+  public createFollowers(): void {
     this.network.forEach(link => link.createLinks(this.network)); // Revisar, no sé si lo utilizo bien
   }
 
@@ -59,5 +63,4 @@ export class TwitterSimulation extends Simulation {
       }
     }
   }
-
 }

@@ -1,5 +1,5 @@
 import {Step} from './Step';
-import {Logger} from '../logger/Logger';
+// import {Logger} from '../logger/Logger';
 import {Environment} from './Environment';
 import {TwitterEnv} from '../Environment/twitter/TwitterEnv';
 
@@ -48,7 +48,7 @@ export abstract class Simulation implements Step {  // abstract
   }
 
   public doStep(period): void {
-    Logger.debug(`Period: ${period} Simulation:${this}`);
+    // Logger.debug(`Period: ${period} Simulation:${this}`);
     this.env.doStep(period);
   }
 

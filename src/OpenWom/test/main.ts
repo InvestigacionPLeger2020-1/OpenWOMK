@@ -118,6 +118,7 @@ switch (envSimulation) {
     newSimulation.createNetwork(hub);
     newSimulation.createNetwork(leader);
     newSimulation.createNetwork(common);
+    newSimulation.createFollowers();
     newSimulation.printNetwork();
     break;
   }

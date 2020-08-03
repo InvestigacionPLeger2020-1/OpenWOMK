@@ -20,7 +20,7 @@ import { FooterComponent } from './footer/footer.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { VideoComponent } from './video/video.component';
 import { AgentsComponent } from './components/forms/agents/agents.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AgentComponent } from './components/agent/agent/agent.component';
 import { VariationsComponent } from './components/variations/variations/variations.component';
 import { RulesEditComponent } from './components/rules-edit/rules-edit.component';
