@@ -42,6 +42,10 @@ export class TwitterAgent extends Agent {
       }
     }
   }
+  // push
+  public doStep(period: number) {
+    super.doStep(period);
+  }
 
 }
 
