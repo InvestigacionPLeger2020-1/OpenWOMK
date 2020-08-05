@@ -13,9 +13,25 @@ export class TwitterSimulation extends Simulation {
     this.network = [];
   }
 
+  public doStep(period) {
+    super.doStep(period);
+    if (period === 0) {
+      // this.network.forEach(link => link.setState('Inactive', 0, period));
+      this.sendMessageToSeeds(period);
+      console.log('--------------');
+    } else {
+      this.sendMessage(period, this.probabilityToSendMessage);
+      console.log('--------------');
+    }
+  }
+
   public printNetwork(): void {
     for (let i = 0; i < this.networkSize; i++) {
-      console.log(this.network[i].getId());
+      if (this.network[i].getIsSeed()) {
+        console.log(this.network[i].getId() + ' Seed');
+      } else {
+        console.log(this.network[i].getId());
+      }
     }
   }
 
@@ -38,29 +54,35 @@ export class TwitterSimulation extends Simulation {
     this.network.forEach(link => link.createLinks(this.network)); // Revisar, no sé si lo utilizo bien
   }
 
-  public sendMessageToSeeds(): void {
+  public sendMessageToSeeds(period: number): void {
     // tslint:disable-next-line:only-arrow-functions
     this.network.forEach(function(link) {
       if (link.getIsSeed()) {
-        link.setMessageReceived(true);
-      } // aqui deberia aumentar el periodo p+= 1 y tengo la duda si debería enviarse inmediatamente el mensaje a los seguidores
-    });  // preguntar si está correcta la utilizacion del forEach
+        link.doStep(period, 2);
+        // link.setState('Received', 1, period);
+        // console.log('Recibido en ' + period + ' por ' + link.getId());
+      } else {
+        link.doStep(period, 1);
+      }
+    });
+    this.network.forEach(link => link.updateState());
   }
 
-  public sendMessage(): void {
-    for (let i = 0; i < this.networkSize; i++) {
-      const courier = this.network[i];
-      if (courier.getIsSeed() && !courier.getMessageReceived()) {
-        courier.retweet();
-      } else if (courier.getMessageReceived() && !courier.getMessageSent()) {
-        if (this.probabilityToSendMessage === -1) {
-          if (Math.random() > 0.5) { // Si no se define una probabilidad de compartir el mensaje se lanza a un 50 50
-            courier.getLinks().forEach(link => link.sendMessage());
-          } else if (Math.random() > this.probabilityToSendMessage) {
-            courier.getLinks().forEach(link => link.sendMessage());
-          }
-        }
+  public sendMessage(period: number, probability: number): void {
+    // tslint:disable-next-line:only-arrow-functions
+    this.network.forEach(function(link) {
+      if (link.getReceivedMessage() && !link.getSentMessage() && link.getIsSeed()) {
+        console.log('.......');
+        console.log(link.getCurrentState());
+        link.doStep(period, 0);
+        console.log(link.getFutureState());
+        console.log('.......');
+      } else if (link.getReceivedMessage() && !link.getSentMessage() && Math.random() > probability) {
+        link.doStep(period, 0);
+      } else {
+        link.doStep(period, 1);
       }
-    }
+    });
+    this.network.forEach(link => link.updateState());
   }
 }

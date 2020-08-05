@@ -9,17 +9,17 @@ export abstract class Agent implements Step {
   protected states: States;
   protected nLinks: number; // Numero de seguidores que tiene.
   protected actions: Map<string, () => void>;
-  protected links: Array<Agent>; // me ha dado 1M de problemas esto
-  protected messageReceived: boolean;
-  protected messageSent: boolean;
+  protected links: Array<Agent>;
+  protected receivedMessage: boolean;
+  protected sentMessage: boolean;
 
   protected constructor(seed: boolean, nLinks: number) {
     this.id = Agent.counter++;
     this.reinit();
     this.seed = seed;
     this.nLinks = nLinks;
-    this.messageReceived = false;
-    this.messageSent = false;
+    this.receivedMessage = false;
+    this.sentMessage = false;
   }
 
   public getState(key: string, period?: number): number {
@@ -30,16 +30,20 @@ export abstract class Agent implements Step {
     this.states.setState(key, value, period);
   }
 
-  public getMessageReceived(): boolean {
-    return this.messageReceived;
+  public getReceivedMessage(): boolean {
+    return this.receivedMessage;
   }
 
-  public setMessageReceived(message: boolean): void {
-    this.messageReceived = message;
+  public setReceivedMessage(message: boolean): void {
+    this.receivedMessage = message;
   }
 
-  public getMessageSent(): boolean {
-    return this.messageSent;
+  public getSentMessage(): boolean {
+    return this.sentMessage;
+  }
+
+  public setSentMessage(message: boolean): void {
+    this.sentMessage = message;
   }
 
   public getLinks(): Array<Agent> {
@@ -85,6 +89,9 @@ export abstract class Agent implements Step {
   }
 
   public sendMessage(): void {
+  }
+
+  public messageNotification(): void {
   }
 
 }

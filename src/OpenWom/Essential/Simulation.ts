@@ -15,7 +15,7 @@ export abstract class Simulation implements Step {  // abstract
     Simulation.id++;
     this.env = env; // esto puede ser creado adentro y no afuera (composicion)
     this.periods = periods;
-    this.probabilityToSendMessage = -1;
+    this.probabilityToSendMessage = 0.5;
   }
 
   public getId(): number {
@@ -40,10 +40,10 @@ export abstract class Simulation implements Step {  // abstract
   }
 
 
-  run(callback: () => void) {
+  run(callback?: () => void) {
     for (let period = 0; period < this.periods; ++period) {
       this.doStep(period);
-      callback.apply(this, arguments); // for special cases (scenarios)
+      // callback.apply(this, arguments); // para hacer alguna interrupcion for special cases (scenarios)
     }
   }
 

@@ -25,6 +25,13 @@ export class States {
     return values;
   }
 
+  public clone(from?: number, to?: number): void {
+    from = from === undefined ? this.states.length - 1 : from;
+    to = to === undefined ? this.states.length : to;
+    // this.states[to].push(this.states[from]);
+    this.states.push(this.states[from]);
+  }
+
   public size(): number {
     return this.states.length;
   }

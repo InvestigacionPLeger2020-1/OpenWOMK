@@ -9,7 +9,7 @@ export abstract class Environment implements Step {
   }
 
   doStep(period): void {
-   this.agents.forEach(agent => agent.doStep(period));
+   // this.agents.forEach(agent => agent.doStep(period));
   }
 
   reinit(): void {

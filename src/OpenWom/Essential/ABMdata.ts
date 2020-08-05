@@ -1,5 +1,6 @@
 export class ABMdata {
   private seed: boolean;
+  private data: object;
   private userType: number;
   private userLinksMin: number;
   private userLinksMax: number;
@@ -17,6 +18,10 @@ export class ABMdata {
     this.influenceMin = influenceMin === undefined ? this.influenceMin : null;
     this.influenceMax = influenceMax === undefined ? this.influenceMin : null;
   }
+
+  /*constructor(ob: object) {
+    this.data = ob;
+  }*/
 
 
   public getSeed(): boolean {
