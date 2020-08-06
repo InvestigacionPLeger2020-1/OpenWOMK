@@ -12,6 +12,7 @@ export abstract class Agent implements Step {
   protected links: Array<Agent>;
   protected receivedMessage: boolean;
   protected sentMessage: boolean;
+  protected changeFlag: boolean;
 
   protected constructor(seed: boolean, nLinks: number) {
     this.id = Agent.counter++;
@@ -20,6 +21,7 @@ export abstract class Agent implements Step {
     this.nLinks = nLinks;
     this.receivedMessage = false;
     this.sentMessage = false;
+    this.changeFlag = false;
   }
 
   public getState(key: string, period?: number): number {

@@ -119,7 +119,7 @@ switch (envSimulation) {
     newSimulation.createNetwork(leader);
     newSimulation.createNetwork(common);
     newSimulation.createFollowers();
-    newSimulation.printNetwork();
+    // newSimulation.printNetwork();
     console.log('-----------------------------');
     newSimulation.run();
     break;

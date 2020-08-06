@@ -41,10 +41,12 @@ export class TwitterSimulation extends Simulation {
   }
 
   private createTwitterAgents(abms: ABMdata): void {
-    const totalAgent: number = Math.trunc(abms.getUserParticipation() * this.networkSize);
+    const totalAgent: number = Math.floor(abms.getUserParticipation() * this.networkSize);
     for (let i = 0; i < totalAgent; i++) {
-      const nFollowers: number = Math.trunc(Math.random() * (abms.getUserLinksMax() - abms.getUserLinksMin() + abms.getUserLinksMin()));
+      const nFollowers: number = Math.floor(Math.random() * (abms.getUserLinksMax() - abms.getUserLinksMin() + 1) + abms.getUserLinksMin());
+      // Math.floor(Math.random() * (max - min + 1) ) + min;
       // const influence: number = (Math.random() * (array[6] - array[5]) + array[5]).toFixed(3);
+      console.log('Min: ' + abms.getUserLinksMin() + ' Max: ' + abms.getUserLinksMax() + ' Rand: ' + nFollowers);
       const newAgent: TwitterAgent = new TwitterAgent(abms.getSeed(), nFollowers, abms.getUserType());
       this.network.push(newAgent);
     }
@@ -72,11 +74,8 @@ export class TwitterSimulation extends Simulation {
     // tslint:disable-next-line:only-arrow-functions
     this.network.forEach(function(link) {
       if (link.getReceivedMessage() && !link.getSentMessage() && link.getIsSeed()) {
-        console.log('.......');
-        console.log(link.getCurrentState());
         link.doStep(period, 0);
-        console.log(link.getFutureState());
-        console.log('.......');
+
       } else if (link.getReceivedMessage() && !link.getSentMessage() && Math.random() > probability) {
         link.doStep(period, 0);
       } else {

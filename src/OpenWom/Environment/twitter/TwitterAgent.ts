@@ -47,21 +47,28 @@ export class TwitterAgent extends Agent {
 
   public sendMessage() { // al parecer así funciona el override
     super.sendMessage();
-    this.retweet();
-    this.futureState = 'Sent';
-    this.sentMessage = true;
+    if (this.receivedMessage && !this.sentMessage && !this.changeFlag) {
+      this.retweet();
+      this.futureState = 'Sent';
+      this.sentMessage = true;
+    }
+    this.changeFlag = true;
   }
 
   public messageNotification() { // buscarle un mejor nombre
     super.messageNotification();
-    if (this.currentState !== 'Sent') {
+    console.log(' REfu: ' + this.getId());
+    if (!this.receivedMessage && !this.sentMessage && !this.changeFlag) {
       this.receivedMessage = true;
       this.futureState = 'Received';
+      console.log('recibe: ' + this.getId());
     }
+    this.changeFlag = true;
   }
 
   public inactiveAgent(): void {
     this.futureState = this.currentState;
+    this.changeFlag = true;
   }
 
   public retweet(): void {
@@ -83,36 +90,39 @@ export class TwitterAgent extends Agent {
 
   public updateState(): void {
     this.statusHistory.push(this.currentState);
-    console.log(this.id + ' Anterior: ' + this.currentState);
+    console.log(this.id + ' A: ' + this.currentState);
     this.currentState = this.futureState;
-    console.log(this.id + ' Nuevo: ' + this.currentState);
-    this.futureState = null;
+    console.log(this.id + ' N: ' + this.currentState);
+    this.changeFlag = false;
   }
 
   // States values: 0 inactive; 1 Received; 2 Sent
   // @ts-ignore
   public doStep(period: number, selectAction: number) {
     super.doStep(period);
+
     switch (selectAction) {
       case 0 : { // Retweet
-        if (this.receivedMessage && this.sentMessage) {
-          this.inactiveAgent();
-        } else {
+        if (this.receivedMessage && !this.sentMessage) {
           this.sendMessage();
+        } else {
+          this.inactiveAgent();
         }
-
+        // this.changeFlag = true;
         // this.setState('Sent', 2, period); // guardar el estado en el historial
-        console.log('Periodo: ' + period + ' Agente: ' + this.id + ' Estado: ' + this.currentState);
+        console.log('Periodo: ' + period + ' Agente: ' + this.id + ' Followers: ' + this.getNLinks() + ' Estado: ' + this.currentState);
         break;
       }
       case 1: { // inactive Agent
         this.inactiveAgent();
-        console.log('Periodo: ' + period + ' Agente: ' + this.id + ' Estado: ' + this.currentState);
+        // this.changeFlag = true;
+        console.log('Periodo: ' + period + ' Agente: ' + this.id + ' Followers: ' + this.getNLinks() + ' Estado: ' + this.currentState);
         break;
       }
       case 2: { // seeds_initialization
         this.messageNotification();
-        console.log('Periodo: ' + period + ' Agente: ' + this.id + ' Estado: ' + this.currentState);
+        // this.changeFlag = true;
+        console.log('Periodo: ' + period + ' Agente: ' + this.id + ' Followers: ' + this.getNLinks() + ' Estado: ' + this.currentState);
         break;
       }
       // tslint:disable-next-line:no-switch-case-fall-through
@@ -121,6 +131,7 @@ export class TwitterAgent extends Agent {
       }
 
     }
+
   }
 
 }
