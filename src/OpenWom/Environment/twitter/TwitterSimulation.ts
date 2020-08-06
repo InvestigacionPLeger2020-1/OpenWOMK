@@ -26,7 +26,9 @@ export class TwitterSimulation extends Simulation {
   }
 
   public printNetwork(): void {
+    console.log('A');
     for (let i = 0; i < this.networkSize; i++) {
+      console.log(i);
       if (this.network[i].getIsSeed()) {
         console.log(this.network[i].getId() + ' Seed');
       } else {
