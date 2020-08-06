@@ -2,16 +2,44 @@
 <div class="container col-md-9" >
 <div class="card d-inline">
     <form>
-    <div class="card w-50 " >  
+    <div class="card w-50 " >
           <div class="name">
             <input type="text" class="form-control" placeholder="ABM name">
           </div>
         </div>
       </form>
-      
+
       <div class="card w-50"  >
         <div class="card-body"  >
-            <mat-form-field [style.width.px]=260 >
+          <form [formGroup]="form" (ngSubmit)="save($event)">
+            <p>
+              Environment <br/>
+              <input type="text" formControlName="environment">
+            </p>
+            <p>
+              seed: <br/>
+              <input type="text" formControlName="seed">
+            </p>
+            <p>
+              Environment: <br/>
+              <select formControlName="Environmen">
+                <option value="1">Twitter</option>
+                <option value="2">Facebook</option>
+                <option value="3">Whatsapp</option>
+              </select>
+            </p>
+            <p>
+              Periods <br/>
+              <input type="text" formControlName="periods">
+            </p>
+            <p>
+              NetworkSize <br/>
+              <input type="text" formControlName="networkSize">
+            </p>
+
+            <button type="submit" >Guardar</button>
+          </form>
+            <!--mat-form-field [style.width.px]=260 >
                 <mat-label>Environment</mat-label>
                 <mat-select disableRipple>
                   <mat-option value="1">Twitter</mat-option>
@@ -19,20 +47,22 @@
                   <mat-option value="3">Instagram no</mat-option>
                   <mat-option value="3">Other</mat-option>
                 </mat-select>
-              </mat-form-field> 
+              </mat-form-field-->
+
         </div>
       </div>
-     
-      
-      
+
+
+
 <div class="card w-50 ">
     <div class="card-body">
+
       <!--h5 class="font-italic"> Rules</h5-->
       <h5 class="font-italic lead"> Here you con config all the rules and action to be applied on the simulation.</h5>
       <a class="btn btn-primary col-md-6 text-white" (click)="openRules()">Rules and actions <i class="fa fa-cogs icon-rules"></i></a>
     </div>
   </div>
-  
+
   <div class="card w-50">
     <div class="card-body">
       <!--h5 class="font-italic">Agent</h5-->
@@ -47,9 +77,10 @@
       <a class="btn btn-primary col-md-6 text-white" (click)="openVariations()">Variations <i class="fa fa-wrench icon-rules"></i></a>
     </div>
   </div>
-  
+
 </div>
 </div>
+
 <div class="container col-md-3 ">
   <div class="card" style="width: 18.5rem;">
     <div class="card-body">
@@ -68,13 +99,13 @@
       </div>
     </div>
   </div>
-  
+
   <div class="card text-center" style="width: 18.5rem;">
     <div class="card-body" id="agents">
       <table class="table">
         <thead>
           <tr>
-            
+
             <th scope="col">Name</th>
             <th scope="col"> Participation</th>
             <th scope="col">Followers</th>
@@ -82,23 +113,23 @@
         </thead>
         <tbody>
           <tr>
-         
+
             <td>Hub</td>
             <td>50%</td>
             <td>100-200</td>
           </tr>
           <tr>
-            
+
             <td>Opinion leader</td>
             <td>50%</td>
             <td>300-400</td>
           </tr>
-         
+
         </tbody>
       </table>
     </div>
   </div>
-  
+
   <div class="card text-right" style="width: 18.5rem; " id="variations">
     <div class="card-body text-center">
       <div class="form-check">
@@ -118,7 +149,7 @@
 
   <div class="card text-right" style="width: 18.5rem;">
     <div class="card-body text-center">
-     
+
       <form>
         <div class="row">
           <div class="col">
@@ -132,13 +163,13 @@
             </div>
             <input type="text" class="form-control" placeholder="Number of simulations">
           </div>
-         
+
         </div>
       </form>
     </div>
     <a class="btn btn-primary col-md-10 text-white tex " id="Run"  >Run ABM <i class="fa fa-play icon-rules"></i></a>
   </div>
-  
+
 </div>
 
 
