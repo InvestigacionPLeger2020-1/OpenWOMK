@@ -71,7 +71,7 @@ export class TwitterSimulation extends Simulation {
     });
     this.network.forEach(link => link.updateState());
   }
-
+// hh
   public sendMessage(period: number, probability: number): void {
     // tslint:disable-next-line:only-arrow-functions
     this.network.forEach(function(link) {
