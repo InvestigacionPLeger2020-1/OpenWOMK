@@ -69,7 +69,7 @@ export class TwitterSimulation extends Simulation {
         link.doStep(period, 1);
       }
     });
-    this.network.forEach(link => link.updateState());
+    this.network.forEach(link => link.updateState(period));
   }
 // hh
   public sendMessage(period: number, probability: number): void {
@@ -84,6 +84,6 @@ export class TwitterSimulation extends Simulation {
         link.doStep(period, 1);
       }
     });
-    this.network.forEach(link => link.updateState());
+    this.network.forEach(link => link.updateState(period));
   }
 }

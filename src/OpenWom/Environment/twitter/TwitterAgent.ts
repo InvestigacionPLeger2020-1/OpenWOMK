@@ -3,7 +3,7 @@ import {Agent} from '../../Essential/Agent';
 // tslint:disable-next-line:class-name
 export class TwitterAgent extends Agent {
   private type: number;
-  private statusHistory: Array<string>;
+  private statusHistory: Array<object>;
   private currentState: string;
   private futureState: string;
   // private links: Array<TwitterAgent>; preguntar como hacer el override aquí o algo que me permita tener un array de TwitterAgent
@@ -25,7 +25,7 @@ export class TwitterAgent extends Agent {
     this.type = type;
   }
 
-  public getStatusHistory(): Array<string> {
+  public getStatusHistory(): Array<object> {
     return this.statusHistory;
   }
 
@@ -45,7 +45,7 @@ export class TwitterAgent extends Agent {
     this.futureState = newState;
   }
 
-  public sendMessage() { // al parecer así funciona el override
+  public sendMessage() {
     super.sendMessage();
     if (this.receivedMessage && !this.sentMessage && !this.changeFlag) {
       this.retweet();
@@ -67,8 +67,10 @@ export class TwitterAgent extends Agent {
   }
 
   public inactiveAgent(): void {
-    this.futureState = this.currentState;
-    this.changeFlag = true;
+    if (!this.changeFlag) {
+      this.futureState = this.currentState;
+      this.changeFlag = true;
+    }
   }
 
   public retweet(): void {
@@ -88,8 +90,8 @@ export class TwitterAgent extends Agent {
     }
   }
 
-  public updateState(): void {
-    this.statusHistory.push(this.currentState);
+  public updateState(period: number): void {
+    this.statusHistory.push({Period: period, Status: this.currentState});
     console.log(this.id + ' A: ' + this.currentState);
     this.currentState = this.futureState;
     console.log(this.id + ' N: ' + this.currentState);
@@ -102,7 +104,7 @@ export class TwitterAgent extends Agent {
     super.doStep(period);
 
     switch (selectAction) {
-      case 0 : { // Retweet
+      case 0 :  // Retweet
         if (this.receivedMessage && !this.sentMessage) {
           this.sendMessage();
         } else {
@@ -112,24 +114,18 @@ export class TwitterAgent extends Agent {
         // this.setState('Sent', 2, period); // guardar el estado en el historial
         console.log('Periodo: ' + period + ' Agente: ' + this.id + ' Followers: ' + this.getNLinks() + ' Estado: ' + this.currentState);
         break;
-      }
-      case 1: { // inactive Agent
+      case 1:  // inactive Agent
         this.inactiveAgent();
         // this.changeFlag = true;
         console.log('Periodo: ' + period + ' Agente: ' + this.id + ' Followers: ' + this.getNLinks() + ' Estado: ' + this.currentState);
         break;
-      }
-      case 2: { // seeds_initialization
+      case 2:  // seeds_initialization
         this.messageNotification();
         // this.changeFlag = true;
         console.log('Periodo: ' + period + ' Agente: ' + this.id + ' Followers: ' + this.getNLinks() + ' Estado: ' + this.currentState);
-        break;
-      }
-      // tslint:disable-next-line:no-switch-case-fall-through
-      default: {
+        break;  // tslint:disable-next-line:no-switch-case-fall-through
+      default:
         this.states.clone();
-      }
-
     }
 
   }
