@@ -122,8 +122,8 @@ switch (envSimulation) {
     // newSimulation.printNetwork();
     console.log('-----------------------------');
     newSimulation.run();
-    newSimulation.getHistory().consoleLogNetwork();
-    // newSimulation.getHistory().getNetworkHistory();
+    // newSimulation.getHistory().consoleLogNetwork();
+    newSimulation.getHistory().getNetworkHistory();
     break;
   }
   default: {

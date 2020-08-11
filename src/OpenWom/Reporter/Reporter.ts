@@ -1,14 +1,15 @@
 
 export class Reporter {
-  private networkHistory: Array<object>;
+  private networkHistory: Array<any>;
 
   constructor() {
     this.networkHistory = [];
   }
 
-  public addHistory(newHistory: Array<object>): void {
+  public addHistory(newHistory: Array<any>): void {
     // tslint:disable-next-line:prefer-for-of
     for (let i = 0; i < newHistory.length; i++) {
+       // console.log(newHistory[i]);
       this.networkHistory.push(newHistory[i]);
     }
   }
@@ -22,7 +23,7 @@ export class Reporter {
     }
   }
 
-  public getNetworkHistory(): Array<object> {
+  public getNetworkHistory(): Array<any> {
     return this.networkHistory;
   }
 

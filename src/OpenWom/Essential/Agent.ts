@@ -13,7 +13,7 @@ export abstract class Agent implements Step {
   protected receivedMessage: boolean;
   protected sentMessage: boolean;
   protected changeFlag: boolean;
-  protected statusHistory: Array<object>;
+  protected statusHistory: Array<any>;
 
   protected constructor(seed: boolean, nLinks: number) {
     this.id = Agent.counter++;
@@ -70,7 +70,7 @@ export abstract class Agent implements Step {
     return this.seed;
   }
 
-  public getStatusHistory(): Array<object> {
+  public getStatusHistory(): Array<any> {
     return this.statusHistory;
   }
 
@@ -92,7 +92,7 @@ export abstract class Agent implements Step {
     links.forEach(link => this.links.push(link));
   }
 
-  public printNetworkHistory(): Array<object> {
+  public printNetworkHistory(): Array<any> {
     // console.log('Agente: ' + this.id + ' Status: ' + this.statusHistory[period].Status);
     return this.statusHistory;
   }
