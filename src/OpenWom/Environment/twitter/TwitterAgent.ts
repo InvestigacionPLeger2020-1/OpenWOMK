@@ -85,7 +85,9 @@ export class TwitterAgent extends Agent {
   }
 
   public updateState(period: number, simulationId: number): void {
-    this.statusHistory.push({SimulationId: simulationId, Period: period, AgentId: this.id, Status: this.currentState});
+    const aux = this.id;
+    const aux2 = this.currentState;
+    this.statusHistory.push({simulationId, period, aux,  aux2});
     // console.log(this.id + ' A: ' + this.currentState);
     this.currentState = this.futureState;
     // console.log(this.id + ' N: ' + this.currentState);

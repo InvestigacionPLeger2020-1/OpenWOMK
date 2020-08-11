@@ -123,6 +123,7 @@ switch (envSimulation) {
     console.log('-----------------------------');
     newSimulation.run();
     newSimulation.getHistory().consoleLogNetwork();
+    // newSimulation.getHistory().getNetworkHistory();
     break;
   }
   default: {
