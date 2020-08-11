@@ -105,13 +105,13 @@ switch (envSimulation) {
   case 'Twitter': {
     console.log('Twitter');
     const env = new TwitterEnv();
-    const newSimulation = new TwitterSimulation(env, 5, 40);
+    const newSimulation = new TwitterSimulation(env, 5, 10);
     // ------------- aqui deberian entrar los datos de la interfaz grafica ----
-    const seed1: ABMdata = new ABMdata(true, 10, 15, 0.025, 1);
-    const seed2: ABMdata = new ABMdata(true, 5, 20, 0.025, 2);
-    const hub: ABMdata = new ABMdata(false, 10, 15, 0.1, 1);
-    const leader: ABMdata = new ABMdata(false, 5, 20, 0.15, 2);
-    const common: ABMdata = new ABMdata(false, 0, 10, 0.7, 3);
+    const seed1: ABMdata = new ABMdata(true, 5, 6, 0.1, 1);
+    const seed2: ABMdata = new ABMdata(true, 3, 5, 0.1, 2);
+    const hub: ABMdata = new ABMdata(false, 5, 6, 0.1, 1);
+    const leader: ABMdata = new ABMdata(false, 3, 5, 0.1, 2);
+    const common: ABMdata = new ABMdata(false, 0, 3, 0.6, 3);
     // ---aqui se deberia ejecutar el comando "create network" en un ciclo dependiendo de los datos que ingresen por la interfaz grafica---
     newSimulation.createNetwork(seed1);
     newSimulation.createNetwork(seed2);
@@ -122,6 +122,7 @@ switch (envSimulation) {
     // newSimulation.printNetwork();
     console.log('-----------------------------');
     newSimulation.run();
+    newSimulation.getHistory().consoleLogNetwork();
     break;
   }
   default: {

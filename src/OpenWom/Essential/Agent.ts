@@ -13,6 +13,7 @@ export abstract class Agent implements Step {
   protected receivedMessage: boolean;
   protected sentMessage: boolean;
   protected changeFlag: boolean;
+  protected statusHistory: Array<object>;
 
   protected constructor(seed: boolean, nLinks: number) {
     this.id = Agent.counter++;
@@ -22,6 +23,7 @@ export abstract class Agent implements Step {
     this.receivedMessage = false;
     this.sentMessage = false;
     this.changeFlag = false;
+    this.statusHistory = [];
   }
 
   public getState(key: string, period?: number): number {
@@ -68,8 +70,16 @@ export abstract class Agent implements Step {
     return this.seed;
   }
 
+  public getStatusHistory(): Array<object> {
+    return this.statusHistory;
+  }
+
   protected addAction(name: string, action: () => void) {
     this.actions.set(name, action);
+  }
+
+  public toString(): string {
+    return `Agent ${this.id} other values:`;
   }
 
   public reinit(): void {
@@ -82,12 +92,13 @@ export abstract class Agent implements Step {
     links.forEach(link => this.links.push(link));
   }
 
-  public doStep(period: number): void {
-    // Logger.debug(this.toString());
+  public printNetworkHistory(): Array<object> {
+    // console.log('Agente: ' + this.id + ' Status: ' + this.statusHistory[period].Status);
+    return this.statusHistory;
   }
 
-  public toString(): string {
-    return `Agent ${this.id} other values:`;
+  public doStep(period: number): void {
+    // Logger.debug(this.toString());
   }
 
   public sendMessage(): void {

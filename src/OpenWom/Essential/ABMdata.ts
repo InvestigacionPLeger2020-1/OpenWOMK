@@ -14,9 +14,9 @@ export class ABMdata {
     this.userLinksMin = userLinksMin;
     this.userLinksMax = userLinksMax;
     this.userParticipation = userParticipation;
-    this.userType = userType === undefined ? this.userType : null;
-    this.influenceMin = influenceMin === undefined ? this.influenceMin : null;
-    this.influenceMax = influenceMax === undefined ? this.influenceMin : null;
+    this.userType = userType === undefined ? null : userType;
+    this.influenceMin = influenceMin === undefined ? null : influenceMin ;
+    this.influenceMax = influenceMax === undefined ? null : influenceMin ;
   }
 
   /*constructor(ob: object) {

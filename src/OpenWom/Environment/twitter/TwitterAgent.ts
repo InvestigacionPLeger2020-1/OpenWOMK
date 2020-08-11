@@ -3,7 +3,6 @@ import {Agent} from '../../Essential/Agent';
 // tslint:disable-next-line:class-name
 export class TwitterAgent extends Agent {
   private type: number;
-  private statusHistory: Array<object>;
   private currentState: string;
   private futureState: string;
   // private links: Array<TwitterAgent>; preguntar como hacer el override aquí o algo que me permita tener un array de TwitterAgent
@@ -14,7 +13,6 @@ export class TwitterAgent extends Agent {
     super(seed, follower);
     this.type = type;
     this.currentState = 'inactive';
-    this.statusHistory = [];
   }
 
   public getType(): number {
@@ -23,10 +21,6 @@ export class TwitterAgent extends Agent {
 
   public setType(type: number) {
     this.type = type;
-  }
-
-  public getStatusHistory(): Array<object> {
-    return this.statusHistory;
   }
 
   public getCurrentState(): string {
@@ -57,11 +51,11 @@ export class TwitterAgent extends Agent {
 
   public messageNotification() { // buscarle un mejor nombre
     super.messageNotification();
-    console.log(' REfu: ' + this.getId());
+    // console.log(' REfu: ' + this.getId());
     if (!this.receivedMessage && !this.sentMessage && !this.changeFlag) {
       this.receivedMessage = true;
       this.futureState = 'Received';
-      console.log('recibe: ' + this.getId());
+      // console.log('recibe: ' + this.getId());
     }
     this.changeFlag = true;
   }
@@ -90,11 +84,11 @@ export class TwitterAgent extends Agent {
     }
   }
 
-  public updateState(period: number): void {
-    this.statusHistory.push({Period: period, Status: this.currentState});
-    console.log(this.id + ' A: ' + this.currentState);
+  public updateState(period: number, simulationId: number): void {
+    this.statusHistory.push({SimulationId: simulationId, Period: period, AgentId: this.id, Status: this.currentState});
+    // console.log(this.id + ' A: ' + this.currentState);
     this.currentState = this.futureState;
-    console.log(this.id + ' N: ' + this.currentState);
+    // console.log(this.id + ' N: ' + this.currentState);
     this.changeFlag = false;
   }
 
@@ -112,17 +106,17 @@ export class TwitterAgent extends Agent {
         }
         // this.changeFlag = true;
         // this.setState('Sent', 2, period); // guardar el estado en el historial
-        console.log('Periodo: ' + period + ' Agente: ' + this.id + ' Followers: ' + this.getNLinks() + ' Estado: ' + this.currentState);
+        // console.log('Periodo: ' + period + ' Agente: ' + this.id + ' Followers: ' + this.getNLinks() + ' Estado: ' + this.currentState);
         break;
       case 1:  // inactive Agent
         this.inactiveAgent();
         // this.changeFlag = true;
-        console.log('Periodo: ' + period + ' Agente: ' + this.id + ' Followers: ' + this.getNLinks() + ' Estado: ' + this.currentState);
+        // console.log('Periodo: ' + period + ' Agente: ' + this.id + ' Followers: ' + this.getNLinks() + ' Estado: ' + this.currentState);
         break;
       case 2:  // seeds_initialization
         this.messageNotification();
         // this.changeFlag = true;
-        console.log('Periodo: ' + period + ' Agente: ' + this.id + ' Followers: ' + this.getNLinks() + ' Estado: ' + this.currentState);
+        // console.log('Periodo: ' + period + ' Agente: ' + this.id + ' Followers: ' + this.getNLinks() + ' Estado: ' + this.currentState);
         break;  // tslint:disable-next-line:no-switch-case-fall-through
       default:
         this.states.clone();
