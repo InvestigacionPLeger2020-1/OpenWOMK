@@ -105,25 +105,28 @@ switch (envSimulation) {
   case 'Twitter': {
     console.log('Twitter');
     const env = new TwitterEnv();
-    const newSimulation = new TwitterSimulation(env, 5, 10);
+    const newSimulation = new TwitterSimulation(env, 5, 30);
     // ------------- aqui deberian entrar los datos de la interfaz grafica ----
-    const seed1: ABMdata = new ABMdata(true, 5, 6, 0.1, 1);
-    const seed2: ABMdata = new ABMdata(true, 3, 5, 0.1, 2);
-    const hub: ABMdata = new ABMdata(false, 5, 6, 0.1, 1);
-    const leader: ABMdata = new ABMdata(false, 3, 5, 0.1, 2);
-    const common: ABMdata = new ABMdata(false, 0, 3, 0.6, 3);
+    const seed1: ABMdata = new ABMdata(true, 5, 10, 10, 1);
+    const hub: ABMdata = new ABMdata(false, 3, 8, 30, 1);
+    const leader: ABMdata = new ABMdata(false, 3, 8, 30, 2);
+    const common: ABMdata = new ABMdata(false, 0, 10, 30, 3);
+
     // ---aqui se deberia ejecutar el comando "create network" en un ciclo dependiendo de los datos que ingresen por la interfaz grafica---
     newSimulation.createNetwork(seed1);
-    newSimulation.createNetwork(seed2);
     newSimulation.createNetwork(hub);
     newSimulation.createNetwork(leader);
     newSimulation.createNetwork(common);
     newSimulation.createFollowers();
     // newSimulation.printNetwork();
     console.log('-----------------------------');
+    newSimulation.setProbabilityToSendMessage(0.8);
     newSimulation.run();
+    console.log(newSimulation.getProbabilityToSendMessage());
+    console.log('-----------------------------');
     // newSimulation.getHistory().consoleLogNetwork();
-    newSimulation.getHistory().getNetworkHistory();
+    const x = newSimulation.getHistory().getNetworkHistory();
+    x.forEach(link => console.log(link));
     break;
   }
   default: {

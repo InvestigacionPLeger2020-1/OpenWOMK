@@ -52,7 +52,7 @@ export class TwitterSimulation extends Simulation {
   }
 
   private createTwitterAgents(abms: ABMdata): void {
-    const totalAgent: number = Math.floor(abms.getUserParticipation() * this.networkSize);
+    const totalAgent: number = Math.floor((abms.getUserParticipation() / 100) * this.networkSize);
     for (let i = 0; i < totalAgent; i++) {
       const nFollowers: number = Math.floor(Math.random() * (abms.getUserLinksMax() - abms.getUserLinksMin() + 1) + abms.getUserLinksMin());
       // Math.floor(Math.random() * (max - min + 1) ) + min;
