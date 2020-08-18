@@ -12,17 +12,13 @@
       <div class="card w-50"  >
         <div class="card-body"  >
           <form [formGroup]="form" (ngSubmit)="save($event)">
-            <p>
+            <!-- p>
               Environment <br/>
               <input type="text" formControlName="environment">
-            </p>
-            <p>
-              seed: <br/>
-              <input type="text" formControlName="seed">
-            </p>
+            </p -->
             <p>
               Environment: <br/>
-              <select formControlName="Environmen">
+              <select class="form-control form-control-sm col-md-6" formControlName="environment" >
                 <option value="1">Twitter</option>
                 <option value="2">Facebook</option>
                 <option value="3">Whatsapp</option>
@@ -30,14 +26,18 @@
             </p>
             <p>
               Periods <br/>
-              <input type="text" formControlName="periods">
+              <input  class="form-control form-control-sm col-md-6" type="text" formControlName="periods">
             </p>
             <p>
               NetworkSize <br/>
-              <input type="text" formControlName="networkSize">
+              <input class="form-control form-control-sm col-md-6" type="text" formControlName="networkSize">
             </p>
+            <!--p>
+              Simulations <br/>
+              <input class="form-control form-control-sm col-md-6" type="text" formControlName="simulations">
+            </p-->
 
-            <button type="submit" >Guardar</button>
+            <button class="btn btn-primary col-md-6 text-center" type="button" >Save</button>
           </form>
             <!--mat-form-field [style.width.px]=260 >
                 <mat-label>Environment</mat-label>
@@ -55,36 +55,43 @@
 
 
 <div class="card w-50 ">
-    <div class="card-body">
+    <!--div class="card-body">
 
-      <!--h5 class="font-italic"> Rules</h5-->
       <h5 class="font-italic lead"> Here you con config all the rules and action to be applied on the simulation.</h5>
       <a class="btn btn-primary col-md-6 text-white" (click)="openRules()">Rules and actions <i class="fa fa-cogs icon-rules"></i></a>
-    </div>
+    </div-->
   </div>
 
   <div class="card w-50">
     <div class="card-body">
-      <!--h5 class="font-italic">Agent</h5-->
       <h5 class="font-italic lead">Here you can select or add agent to the simulation.</h5>
-      <a class="btn btn-primary col-md-6 text-white" (click)="openAgent()">Agents <i class="fa fa-users icon-rules"></i></a>
+      <a class="btn btn-primary col-md-6 text-white btn-sm" (click)="openAgent()">Agents <i class="fa fa-users icon-rules"></i></a>
     </div>
   </div>
   <div class="card w-50">
     <div class="card-body">
       <!--h5 class="font-italic">Variations</h5-->
-      <h5 class="font-italic lead" >Here you can config especific options for simulation.</h5>
-      <a class="btn btn-primary col-md-6 text-white" (click)="openVariations()">Variations <i class="fa fa-wrench icon-rules"></i></a>
+      <h5 class="font-italic lead" >Here you can config specific options for simulation.</h5>
+      <a class="btn btn-primary col-md-6 text-white btn-sm" (click)="openVariations()">Variations <i class="fa fa-wrench icon-rules"></i></a>
     </div>
   </div>
 
 </div>
 </div>
 
+
+
 <div class="container col-md-3 ">
-  <div class="card" style="width: 18.5rem;">
+
+  <div class="card" style="width: 23rem;">
+    <div class="card-body " style="text-align: center " id="environment">
+      <h1 > <strong>Environment :</strong> {{environ}}</h1>
+    </div>
+  </div>
+
+  <!--div class="card" style="width: 23rem;">
     <div class="card-body">
-      <h4 class="card-title text-center">Rules and Actions</h4>
+      <h4 class="card-title text-center"><strong>Rules and Actions</strong></h4>
       <div class="form-check">
         <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
         <label class="form-check-label" for="defaultCheck1">
@@ -98,44 +105,62 @@
         </label>
       </div>
     </div>
-  </div>
+  </div-->
 
-  <div class="card text-center" style="width: 18.5rem;">
+  <div class="card text-center" style="width: 23rem;">
     <div class="card-body" id="agents">
       <table class="table">
         <thead>
-          <tr>
+        <tr>
 
-            <th scope="col">Name</th>
-            <th scope="col"> Participation</th>
-            <th scope="col">Followers</th>
-          </tr>
+          <th scope="col">Name</th>
+          <th scope="col"> Participation</th>
+          <th scope="col">Max users</th>
+          <th scope="col">Min users</th>
+        </tr>
         </thead>
         <tbody>
-          <tr>
+        <tr>
 
-            <td>Hub</td>
-            <td>50%</td>
-            <td>100-200</td>
-          </tr>
-          <tr>
+          <td>{{hub}}</td>
+          <td>{{participationHub}}</td>
+          <td>{{maxUserLinksHub}}</td>
+          <td>{{minUserLinksHub}}</td>
+        </tr>
+        <tr>
 
-            <td>Opinion leader</td>
-            <td>50%</td>
-            <td>300-400</td>
-          </tr>
+          <td>{{opinionLeader}}</td>
+          <td>{{participationOpinionLeader}}</td>
+          <td>{{maxUserLinksOpinionLeader}}</td>
+          <td>{{minUserLinksOpinionLeader}}</td>
+        </tr>
+
+        <tr>
+
+          <td>{{comon}}</td>
+          <td>{{participationCommon}} </td>
+          <td>{{maxUserLinksCommon}}</td>
+          <td>{{minUserLinksCommon}}</td>
+        </tr>
+
 
         </tbody>
       </table>
     </div>
   </div>
 
-  <div class="card text-right" style="width: 18.5rem; " id="variations">
+  <div class="card text-right" style="width: 23rem; " id="variations">
+    <div class="card-body text-center">
+      <h3><strong>Share Probability (%):</strong> {{probabilityserv}}</h3>
+    </div>
+  </div>
+
+  <!--div class="card text-right" style="width: 23rem; " id="variations">
     <div class="card-body text-center">
       <div class="form-check">
         <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
         <label class="form-check-label" for="defaultCheck1">
-         <label>Retweet after X=10 periods</label>
+          <label>Retweet after X=10 periods</label>
         </label>
       </div>
       <div class="form-check">
@@ -145,35 +170,98 @@
         </label>
       </div>
     </div>
-  </div>
+  </div-->
 
-  <div class="card text-right" style="width: 18.5rem;">
+  <div class="card text-right" style="width: 23rem;">
     <div class="card-body text-center">
 
       <form>
         <div class="row">
           <div class="col">
-            <div class="custom-control custom-radio">
-              <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" >
-              <label class="custom-control-label" for="customRadio1" >--|.  Data production</label>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="Check1" disabled>
+              <label class="form-check-label" for="Check1">
+                      Show simulation
+              </label>
+              <br>
+              <input class="form-check-input" type="checkbox" value="" id="Check2">
+              <label class="form-check-label" for="Check2">
+                Data Production
+              </label>
+
             </div>
-            <div class="custom-control custom-switch  ">
-              <input type="checkbox" class="custom-control-input" id="customSwitch1" >
-              <label class="custom-control-label" for="customSwitch1">Simulation display</label>
-            </div>
-            <input type="text" class="form-control" placeholder="Number of simulations">
+            <!--input type="text" class="form-control" placeholder="Number of simulations"-->
           </div>
 
         </div>
       </form>
     </div>
-    <a class="btn btn-primary col-md-10 text-white tex " id="Run"  >Run ABM <i class="fa fa-play icon-rules"></i></a>
+    <a class="btn btn-primary col-md-10 text-white" id="Run" (click)="run()" >Run ABM <i class="fa fa-play icon-rules"></i></a>
   </div>
-
+  <button class="btn col-md-11 btn-sm text-center" mat-raised-button color="primary"  (click)="excel()" id="botonExcel"> Download Excel <mat-icon>trending_down</mat-icon></button>
 </div>
 
 
+<!--script>
+  $(document).ready(function () {
+
+    const workbook = new Excel.Workbook();
+
+    workbook.creator = 'We';
+    workbook.lastModifiedBy = 'We';
+    workbook.created = new Date(2020, 8, 11);
+    workbook.modified = new Date();
+    workbook.lastPrinted = new Date(2020, 8, 11);
+
+    const worksheet = workbook.addWorksheet('Simulation');
+    worksheet.views = [
+      {state: 'frozen', xSplit: 0, ySplit: 1}
+    ];
+
+    worksheet.autoFilter = {
+      from: 'A1',
+      to: 'N1'
+    };
+
+    worksheet.columns = [
+      { header: 'Year', key: 'year', width: 12, style: {numFmt: '0000'}},
+      { header: 'Index', key: 'Index', width: 15 },
+      { header: 'Title', key: 'title', width: 25, style: {alignment: {wrapText: true} } },
+      { header: 'Authors', key: 'authors', width: 20, style: {alignment: {wrapText: true} } },
+      { header: 'Journal/Conference', key: 'jc', width: 25, style: {alignment: {wrapText: true} } },
+      { header: 'Type', key: 'type', width: 12, style: {alignment: {wrapText: true} } },
+      { header: 'Month', key: 'month', width: 12},
+      { header: 'volume', key: 'volume', width: 12, style: {numFmt: '0000'}},
+      { header: 'number', key: 'number', width: 12, style: {numFmt: '0000'}},
+      { header: 'Pages', key: 'pages', width: 12},
+      { header: 'Location', key: 'location', width: 20, style: {alignment: {wrapText: true} } },
+      { header: 'DOI', key: 'doi', width: 22, style: {alignment: {wrapText: true} } },
+      { header: 'IF (ISI/SCOPUS)', key: 'if', width: 20, style: {alignment: {wrapText: true}}},
+      { header: 'Affiliation', key: 'affiliation', width: 20, style: {alignment: {wrapText: true} } }
+    ];
 
 
+    const firstRow = worksheet.getRow(1);
+    firstRow.font = { name: 'New Times Roman', family: 4, size: 10, bold: true, color: {argb:'80EF1C1C'} };
+    firstRow.alignment = { vertical: 'middle', horizontal: 'center'};
+    firstRow.height = 20;
 
+    // worksheet.addRows(csv);
 
+    // tslint:disable-next-line:only-arrow-functions
+    $('#download').click(function() {
+
+      alertify.prompt('Save the publication file as ...', 'Simulation.xlsx', const function (evt, fileName ) {
+        const buff = workbook.xlsx.writeBuffer().then(function (data) {
+          const blob = new Blob([data], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+          saveAs(blob, fileName);
+        });
+        alertify.success('File ' + fileName + ' downloaded!');
+      },
+      function(){
+        alertify.error('File did not download');
+      });
+    });
+  });
+
+</script -->

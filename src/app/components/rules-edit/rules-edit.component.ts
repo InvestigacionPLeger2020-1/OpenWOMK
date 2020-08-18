@@ -10,13 +10,9 @@ export class RulesEditComponent implements OnInit {
   show = {
     retweet: true,
     read: false
-  
-  }
-  
+  };
     constructor(
       @Inject(MAT_DIALOG_DATA) public data: any){}
-  
     ngOnInit(): void {
     }
-  
   }

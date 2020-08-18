@@ -11,20 +11,20 @@ export class VariationsEditComponent implements OnInit {
   show = {
     retweet: true,
     read: true,
-    
-  
-  }
+
+
+  };
   value = 'Probability %';
   value2 = 'X value';
   value3 = 'Period';
-  
-  
+
+
     constructor(
       @Inject(MAT_DIALOG_DATA) public data: any){}
-  
+
     ngOnInit(): void {
     }
-  
+
   }
-  
+
 

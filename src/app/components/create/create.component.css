@@ -10,8 +10,8 @@
 .container{
     margin-top: 20px;
     margin-left: auto;
-    float: left; 
-   
+    float: left;
+
 }
 
 .icon-rules {
@@ -23,7 +23,7 @@
   }
 
   #Run{
-    
+
         font-size: 15px;
         line-height: 30px;
         text-align: center;
@@ -31,8 +31,8 @@
         margin-top: -8px;
         width: 400px;
         height: 55px;
-        
-    
+
+
   }
 
   #agents{
@@ -43,15 +43,24 @@
   }
 
   #variations{
-      
     margin-bottom: -20px;
+  }
+
+  #environment{
+    margin-bottom: -25px;
+  }
+  #botonExcel{
+    font-size: 14px;
+    line-height: 50px;
+    text-align: center;
+    width: 400px;
+    height: 45px;
+    margin-left: 0px;
+    margin-top: 0px;
   }
 
 
 
- 
 
 
-  
-  
-  
+

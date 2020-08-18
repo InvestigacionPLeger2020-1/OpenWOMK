@@ -8,13 +8,13 @@
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
                  [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
       <mat-nav-list>
-        
-       
+
+
           <div *ngFor="let link of links" >
             <a mat-list-item [routerLink] = "[link.link]"> &nbsp; {{link.name}} </a>
           </div>
-       
-        
+
+
         <!--a mat-list-item routerLink="." *ngFor="let nav of fillerNav">{{nav}}</ap-->
       </mat-nav-list>
     </mat-sidenav>
@@ -27,5 +27,5 @@
 </div>
 
 
-<div *ngIf="!shouldRun">Please open on Stackblitz to see result</div>
+<div *ngIf="!shouldRun"></div>
 

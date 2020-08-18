@@ -8,6 +8,12 @@ import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
   styleUrls: ['sidenav.component.css'],
 })
 export class SidenavComponent implements OnDestroy {
+
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+  }
   mobileQuery: MediaQueryList;
 
   fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
@@ -19,21 +25,16 @@ export class SidenavComponent implements OnDestroy {
        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`);
 
+  // tslint:disable-next-line:variable-name
   private _mobileQueryListener: () => void;
-  links= [{name:'Create ABM',link:'create'},
-  {name:'Edit ABM',link:'details'},
-{name:'Importar ABM', link:'list'}]
+  links = [{name: 'Create ABM', link: 'create'},
+  {name: 'Edit ABM', link: 'details'},
+{name: 'Importar ABM', link: 'list'}];
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
-  }
+  shouldRun = true;
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
-
-  shouldRun = true;
 }
 

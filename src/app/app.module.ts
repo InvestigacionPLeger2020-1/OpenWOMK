@@ -27,6 +27,7 @@ import { RulesEditComponent } from './components/rules-edit/rules-edit.component
 import { AgentEditComponent } from './components/agent-edit/agent-edit.component';
 import { VariationsEditComponent } from './components/variations-edit/variations-edit.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 
@@ -51,7 +52,8 @@ import { HttpClientModule } from '@angular/common/http';
     VariationsComponent,
     RulesEditComponent,
     AgentEditComponent,
-    VariationsEditComponent
+    VariationsEditComponent,
+    NavbarComponent
 
 
   ],

@@ -10,12 +10,9 @@ export class AgentEditComponent implements OnInit {
   show = {
     retweet: true,
     read: true
-  
-  }
-  
+  };
     constructor(
       @Inject(MAT_DIALOG_DATA) public data: any){}
-  
     ngOnInit(): void {
     }
 }

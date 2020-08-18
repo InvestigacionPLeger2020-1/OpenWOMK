@@ -11,7 +11,7 @@ show = {
   retweet: true,
   read: true
 
-}
+};
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any){}

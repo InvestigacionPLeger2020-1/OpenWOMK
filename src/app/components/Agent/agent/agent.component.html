@@ -1,8 +1,14 @@
 <div class="card">
-  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Agents</h3>
+  <div class="col-sm-12" style="text-align:right; ">
+    <button  mat-icon-button mat-dialog-close color="warn" (click)="sendCreate()">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </div>
+
+  <h5 class="card-header text-center font-weight-bold text-uppercase py-4">Agents</h5>
   <div class="card-body">
     <div id="table" class="table-editable">
-      <span class="table-add float-right mb-3 mr-2">
+      <span class="table-a  dd float-right mb-3 mr-2">
         <a class="text-success" (click)="add()">
           <mdb-icon fas icon="plus" size="2x"></mdb-icon>
         </a>
@@ -11,18 +17,22 @@
         <tr>
           <th class="text-center">Name</th>
           <th class="text-center">% Participation</th>
-          <th class="text-center">Followers</th>
+          <th class="text-center">Max user links</th>
+          <th class="text-center">Min user links</th>
           <th class="text-center">Remove</th>
         </tr>
         <tr *ngFor="let person of personList; let id = index">
           <td>
-            <span (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(id, 'name', $event)" contenteditable="true">{{person.name}}</span>
+            <span (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(id, 'name', $event)" contenteditable="false">{{person.name}}</span>
           </td>
           <td>
             <span contenteditable="true" (keyup)="changeValue(id, 'participation', $event)" (blur)="updateList(id, 'participation', $event)">{{person.participation}}</span>
           </td>
           <td>
-            <span contenteditable="true" (keyup)="changeValue(id, 'Followers', $event)" (blur)="updateList(id, 'Followers', $event)">{{person.Followers}}</span>
+            <span contenteditable="true" (keyup)="changeValue(id, 'maxUserLinks', $event)" (blur)="updateList(id, 'maxUserLinks', $event)">{{person.maxUserLinks}}</span>
+          </td>
+          <td>
+            <span contenteditable="true" (keyup)="changeValue(id, 'minUserLinks', $event)" (blur)="updateList(id, 'minUserLinks', $event)">{{person.minUserLinks}}</span>
           </td>
           <td>
             <span class="table-remove">
@@ -30,7 +40,47 @@
             </span>
           </td>
         </tr>
+
+      </table>
+      <h5 class="card-header text-center font-weight-bold text-uppercase py-4">Seeds</h5>
+      <span class="table-add float-right mb-3 mr-2">
+        <!--a class="text-success" (click)="addSeed()">
+          <mdb-icon fas icon="plus" size="2x"></mdb-icon>
+        </a-->
+      </span>
+      <table class="table table-bordered table-responsive-md table-striped text-center">
+        <tr>
+          <th class="text-center">Name</th>
+          <th class="text-center">% Participation</th>
+          <th class="text-center">Max user links</th>
+          <th class="text-center">Min user links</th>
+          <th class="text-center">Remove</th>
+        </tr>
+        <tr *ngFor="let seed of seedList; let id = index">
+          <td>
+            <span (keyup)="changeSeedValue(id, 'name', $event)" (blur)="updateSeed(id, 'name', $event)" contenteditable="false">{{seed.name}}</span>
+          </td>
+          <td>
+            <span contenteditable="true" (keyup)="changeSeedValue(id, 'participation', $event)" (blur)="updateSeed(id, 'participation', $event)">{{seed.participation}}</span>
+          </td>
+          <td>
+            <span contenteditable="true" (keyup)="changeSeedValue(id, 'maxUserLinks', $event)" (blur)="updateSeed(id, 'maxUserLinks', $event)">{{seed.maxUserLinks}}</span>
+          </td>
+          <td>
+            <span contenteditable="true" (keyup)="changeSeedValue(id, 'minUserLinks', $event)" (blur)="updateSeed(id, 'minUserLinks', $event)">{{seed.minUserLinks}}</span>
+          </td>
+          <td>
+            <span class="table-remove">
+              <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="removeSeed(id)">Remove</button>
+            </span>
+          </td>
+        </tr>
       </table>
     </div>
   </div>
+
+  <!--div class="card-footer" >
+    <button (click)="createSimulation()">boton</button>
+  </div-->
+
 </div>
