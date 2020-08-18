@@ -13,8 +13,13 @@ import {VariationService} from '../../../services/variation.service';
     </div>
       <h5 class="card-header text-center font-weight-bold text-uppercase py-4">{{textValue}}</h5>
       <br>
-        <input #textbox type="text" required>
+        <input #textbox type="number" required placeholder="0.5 = 50%">
         <button class="btn btn-primary col-md-2 text-white btn-sm" (click)="logText(textbox.value)">Confirm</button>
+      <br>
+      <br>
+      <mat-checkbox [(ngModel)]="show.retweet">1 Retweet per tweet</mat-checkbox>
+      <br>
+      <mat-checkbox [(ngModel)]="show.read">1 Read per tweet</mat-checkbox>
     </div>
   `
 })
@@ -26,10 +31,10 @@ export class VariationsComponent implements OnInit {
       @Inject(MAT_DIALOG_DATA) public data: any, private variationService: VariationService){
     }
   show = {
-    retweet: true,
-    read: true,
+    retweet: false,
+    read: false,
   };
-  textValue = 'Choose probability';
+  textValue = 'Variations';
   log ;
   value = 'Probability %';
   value2 = 'X value';

@@ -24,13 +24,15 @@
                 <option value="3">Whatsapp</option>
               </select>
             </p>
-            <p>
+
               Periods <br/>
-              <input  class="form-control form-control-sm col-md-6" type="text" formControlName="periods">
-            </p>
+              <input  class="form-control form-control-sm col-md-6" type="number" formControlName="periods" placeholder="Example: 2" >
+            <div class=" alert-danger" *ngIf="form.errors  && (form.dirty || form.touched)">
+              <p *ngIf="form.errors.pattern" class="text-danger"> Numbers only</p>
+            </div>
             <p>
               NetworkSize <br/>
-              <input class="form-control form-control-sm col-md-6" type="text" formControlName="networkSize">
+              <input class="form-control form-control-sm col-md-6" type="number" formControlName="networkSize" placeholder="Example: 100">
             </p>
             <!--p>
               Simulations <br/>

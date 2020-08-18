@@ -17,7 +17,7 @@ export abstract class Simulation implements Step {  // abstract
     Simulation.id++;
     this.env = env; // esto puede ser creado adentro y no afuera (composicion)
     this.periods = periods;
-    this.probabilityToSendMessage = 1;
+    this.probabilityToSendMessage = 0.5;
     this.history = new Reporter();
   }
 

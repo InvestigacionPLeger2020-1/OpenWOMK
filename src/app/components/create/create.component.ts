@@ -187,7 +187,7 @@ export class CreateComponent implements OnInit {
     this.form = new FormGroup({
       environment: new FormControl('', [Validators.required]),
      // Environmen: new FormControl('', [Validators.required]),
-      periods: new FormControl('', [Validators.required]),
+      periods: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[0-9]*$')])),
       networkSize: new FormControl('', [Validators.required]),
     //  simulations: new FormControl('', [Validators.required]),
     //  userLinksMin: new FormControl('', [Validators.required]),
@@ -333,7 +333,6 @@ export class CreateComponent implements OnInit {
   excel(){
     this.generateExcel(this.reportData);
   }
-
   getEnv(id: string) {
     const ele = document.getElementById(id) as HTMLInputElement;
     alert(ele.value);

@@ -49,6 +49,9 @@ export class AgentComponent implements OnInit {
   seedParticipationCommon: number;
   seedMaxUserLinksCommon: number;
   seedMinUserLinksCommon: number;
+  participationAgent4: number;
+  maxUserLinkAgent4: number;
+  minUserLinkAgent4: number;
   dataFromCreate: any;
   simulations: number;
   hub: ABMdata;
@@ -73,15 +76,15 @@ export class AgentComponent implements OnInit {
   ];
 
   nextPersonList: Array<any> = [
-    {id: 4, name: 'TwitterName', participation: 0, maxUserLinks: 0},
-    {id: 5, name: 'TwitterName', participation: 0, maxUserLinks: 0},
-    {id: 6, name: 'TwitterName', participation: 0, maxUserLinks: 0},
+    {id: 4, name: 'TwitterAgent(4)', participation: 0, maxUserLinks: 0, minUserLinks: 0},
+    {id: 5, name: 'TwitterAgent(5)', participation: 0, maxUserLinks: 0, minUserLinks: 0},
+    {id: 6, name: 'TwitterAgent(6)', participation: 0, maxUserLinks: 0, minUserLinks: 0},
 
   ];
   nextSeedList: Array<any> = [
-    {id: 4, name: 'TwitterName', participation: 0, maxUserLinks: 0},
-    {id: 5, name: 'TwitterName', participation: 0, maxUserLinks: 0},
-    {id: 6, name: 'TwitterName', participation: 0, maxUserLinks: 0},
+    {id: 4, name: 'TwitterName', participation: 0, maxUserLinks: 0, minUserLinks: 0},
+    {id: 5, name: 'TwitterName', participation: 0, maxUserLinks: 0, minUserLinks: 0},
+    {id: 6, name: 'TwitterName', participation: 0, maxUserLinks: 0, minUserLinks: 0},
 
   ];
 
@@ -191,6 +194,15 @@ export class AgentComponent implements OnInit {
           this.seedParticipationCommon = this.seedList[2].participation;
           this.seedMaxUserLinksCommon = this.seedList[2].maxUserLinks;
           this.seedMinUserLinksCommon = this.seedList[2].minUserLinks;
+          // ----------------------------------------------------------
+          try {​​  this.participationAgent4 = this.personList[3].participation; } catch (error) {​​  this.participationAgent4 = null;​​}
+          console.log('trycatch: ' + this.participationAgent4);
+          if (this.participationAgent4 !== null) {
+            this.participationAgent4 = this.personList[3].participation;
+            this.maxUserLinkAgent4 = this.personList[3].maxUserLinks;
+            this.minUserLinkAgent4 = this.personList[3].minUserLinks;
+            console.log('nextList participation: ' + this.personList[3].participation);
+          }
           // this.simulations = this.dataFromCreate[3];
           // this.arrayAgent = this.personList;
           // this.agentService.sendArray(this.arrayAgent);
@@ -272,20 +284,53 @@ export class AgentComponent implements OnInit {
             console.log(seed.getUserParticipation());
             console.log(hub.getSeed());*/
           const env = new TwitterEnv();
+          console.log('periods: ' + this.dataFromCreate[1]);
+          console.log('networkSize: ' + this.dataFromCreate[2]);
           const newSimulation = new TwitterSimulation(env, this.dataFromCreate[1], this.dataFromCreate[2]);
-          const seed1: ABMdata = new ABMdata(true,  this.seedMinUserLinksHub, this.seedMaxUserLinksHub, this.seedParticipationHub, 1);
-          const hub: ABMdata = new ABMdata(false, this.minUserLinksHub, this.maxUserLinksHub, this.participationHub, 1);
-          const leader: ABMdata = new ABMdata(false, this.minUserLinksOpinionLeader, this.maxUserLinksOpinionLeader, this.minUserLinksOpinionLeader, 2);
-          const common: ABMdata = new ABMdata(false, this.minUserLinksCommon, this.maxUserLinksCommon, this.participationCommon, 3);
+          const seed1: ABMdata = new ABMdata(true,  this.seedMinUserLinksHub,
+                                                         this.seedMaxUserLinksHub,
+                                                         this.seedParticipationHub, 1);
+          const hub: ABMdata = new ABMdata(false, this.minUserLinksHub,
+                                                       this.maxUserLinksHub,
+                                                       this.participationHub, 1);
+          const leader: ABMdata = new ABMdata(false, this.minUserLinksOpinionLeader,
+                                                          this.maxUserLinksOpinionLeader,
+                                                          this.participationOpinionLeader, 2);
+          const common: ABMdata = new ABMdata(false, this.minUserLinksCommon,
+                                                          this.maxUserLinksCommon,
+                                                          this.participationCommon, 3);
           newSimulation.createNetwork(seed1);
+          if (this.seedParticipationOpinionLeader !== 0) {
+            const seed2: ABMdata = new ABMdata(true, this.seedMinUserLinksOpinionLeader,
+                                                          this.seedMaxUserLinksOpinionLeader,
+                                                          this.seedParticipationOpinionLeader, 2);
+            newSimulation.createNetwork(seed2);
+          }
+          if (this.seedParticipationOpinionLeader !== 0) {
+            const seed3: ABMdata = new ABMdata(true,  this.seedMinUserLinksCommon,
+                                                           this.seedMaxUserLinksCommon,
+                                                           this.seedParticipationCommon, 3);
+            newSimulation.createNetwork(seed3);
+          }
+          if (this.participationAgent4 != null){
+            const twitterAgent4 = new ABMdata(false, this.minUserLinkAgent4,
+              this.maxUserLinkAgent4,
+              this.participationAgent4, 4);
+            newSimulation.createNetwork(twitterAgent4);
+          }
           newSimulation.createNetwork(hub);
           newSimulation.createNetwork(leader);
           newSimulation.createNetwork(common);
           newSimulation.createFollowers();
           newSimulation.setProbabilityToSendMessage(this.probabilityserv);
+          if (newSimulation.getProbabilityToSendMessage() === undefined){
+            newSimulation.setProbabilityToSendMessage(0.5);
+          }
           // newSimulation.printNetwork();
+          console.log('antes del run ' + newSimulation.getProbabilityToSendMessage());
           console.log('-----------------------------');
           newSimulation.run();
+          console.log('despues del run ' + newSimulation.getProbabilityToSendMessage());
 
           // newSimulation.getHistory().consoleLogNetwork();
           this.excelService.generateExcel(newSimulation.getHistory().getNetworkHistory());
