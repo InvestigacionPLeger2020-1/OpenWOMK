@@ -7,7 +7,7 @@ import {VariationService} from '../../../services/variation.service';
   template: `
     <div class="container">
     <div class="col-sm-12" style="text-align:right; ">
-      <button  mat-icon-button mat-dialog-close color="warn" id="botonvar">
+      <button  mat-icon-button mat-dialog-close color="warn" id="botonvar" (click)="sendData(textbox.value)">
         <mat-icon>clear</mat-icon>
       </button>
     </div>
@@ -35,13 +35,18 @@ export class VariationsComponent implements OnInit {
     read: false,
   };
   textValue = 'Variations';
-  log ;
+  log: any;
   value = 'Probability %';
   value2 = 'X value';
   value3 = 'Period';
   probability = this.log;
 
   logText(value: string): void {
+    this.log = `${value}`;
+    this.probability = Number(this.log);
+    this.variationService.sendProbability(this.probability);
+  }
+  sendData(value: string){
     this.log = `${value}`;
     this.probability = Number(this.log);
     this.variationService.sendProbability(this.probability);

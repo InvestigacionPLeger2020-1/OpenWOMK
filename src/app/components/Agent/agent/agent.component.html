@@ -1,29 +1,30 @@
+<div class="col-sm-12" style="text-align:right;">
+  <button  mat-icon-button mat-dialog-close color="warn" (click)="sendCreate()">
+    <mat-icon>clear</mat-icon>
+  </button>
+</div>
 <div class="card">
-  <div class="col-sm-12" style="text-align:right; ">
-    <button  mat-icon-button mat-dialog-close color="warn" (click)="sendCreate()">
-      <mat-icon>clear</mat-icon>
-    </button>
-  </div>
 
-  <h5 class="card-header text-center font-weight-bold text-uppercase py-4">Agents</h5>
+
+  <h5 class="card-header text-center font-weight-bold text-uppercase py-4" id="addAgent">Agents</h5>
   <div class="card-body">
     <div id="table" class="table-editable">
       <span class="table-a  dd float-right mb-3 mr-2">
-        <a class="text-success" (click)="add()">
+        <a class="text-success" (click)="add()" >
           <mdb-icon fas icon="plus" size="2x"></mdb-icon>
         </a>
       </span>
       <table class="table table-bordered table-responsive-md table-striped text-center">
         <tr>
-          <th class="text-center">Name</th>
-          <th class="text-center">% Participation</th>
-          <th class="text-center">Max user links</th>
-          <th class="text-center">Min user links</th>
-          <th class="text-center">Remove</th>
+          <th class="bg-info font-italic text-center">Name</th>
+          <th class="bg-info font-italic text-center">% Participation</th>
+          <th class="bg-info font-italic text-center">Max user links</th>
+          <th class="bg-info font-italic text-center">Min user links</th>
+          <th class="bg-info font-italic text-center">Remove</th>
         </tr>
         <tr *ngFor="let person of personList; let id = index">
           <td>
-            <span (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(id, 'name', $event)" contenteditable="false">{{person.name}}</span>
+            <span (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(id, 'name', $event)" contenteditable="false"><strong>{{person.name}}</strong></span>
           </td>
           <td>
             <span contenteditable="true" (keyup)="changeValue(id, 'participation', $event)" (blur)="updateList(id, 'participation', $event)">{{person.participation}}</span>
@@ -42,7 +43,7 @@
         </tr>
 
       </table>
-      <h5 class="card-header text-center font-weight-bold text-uppercase py-4">Seeds</h5>
+      <h5 class="card-header text-center font-weight-bold text-uppercase py-4" id="addSeed">Seeds</h5>
       <span class="table-add float-right mb-3 mr-2">
         <!--a class="text-success" (click)="addSeed()">
           <mdb-icon fas icon="plus" size="2x"></mdb-icon>
@@ -50,15 +51,15 @@
       </span>
       <table class="table table-bordered table-responsive-md table-striped text-center">
         <tr>
-          <th class="text-center">Name</th>
-          <th class="text-center">% Participation</th>
-          <th class="text-center">Max user links</th>
-          <th class="text-center">Min user links</th>
-          <th class="text-center">Remove</th>
+          <th class="bg-info font-italic text-center">Name</th>
+          <th class="bg-info font-italic text-center">% Participation</th>
+          <th class="bg-info font-italic text-center">Max user links</th>
+          <th class="bg-info font-italic text-center">Min user links</th>
+          <th class="bg-info font-italic text-center">Remove</th>
         </tr>
         <tr *ngFor="let seed of seedList; let id = index">
           <td>
-            <span (keyup)="changeSeedValue(id, 'name', $event)" (blur)="updateSeed(id, 'name', $event)" contenteditable="false">{{seed.name}}</span>
+            <span (keyup)="changeSeedValue(id, 'name', $event)" (blur)="updateSeed(id, 'name', $event)" contenteditable="false"><strong>{{seed.name}}</strong></span>
           </td>
           <td>
             <span contenteditable="true" (keyup)="changeSeedValue(id, 'participation', $event)" (blur)="updateSeed(id, 'participation', $event)">{{seed.participation}}</span>

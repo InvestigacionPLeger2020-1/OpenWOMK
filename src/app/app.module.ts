@@ -28,6 +28,10 @@ import { AgentEditComponent } from './components/agent-edit/agent-edit.component
 import { VariationsEditComponent } from './components/variations-edit/variations-edit.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { AgentWhatsappComponent } from './components/agent-whatsapp/agent-whatsapp.component';
+import { VariationWhatsappComponent } from './components/variation-whatsapp/variation-whatsapp.component';
+import { AgentFacebookComponent } from './components/agent-facebook/agent-facebook.component';
+import { VariationFacebookComponent } from './components/variation-facebook/variation-facebook.component';
 
 
 
@@ -53,7 +57,11 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     RulesEditComponent,
     AgentEditComponent,
     VariationsEditComponent,
-    NavbarComponent
+    NavbarComponent,
+    AgentWhatsappComponent,
+    VariationWhatsappComponent,
+    AgentFacebookComponent,
+    VariationFacebookComponent
 
 
   ],

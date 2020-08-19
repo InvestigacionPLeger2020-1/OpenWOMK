@@ -18,6 +18,10 @@ import { ExcelService} from '../../services/excel.service';
 import {Reporter} from '../../../OpenWom/Reporter/Reporter';
 import {AgentsService} from '../../services/agents.service';
 import {VariationService} from '../../services/variation.service';
+import {AgentWhatsappComponent} from '../agent-whatsapp/agent-whatsapp.component';
+import {VariationWhatsappComponent} from '../variation-whatsapp/variation-whatsapp.component';
+import {AgentFacebookComponent} from '../agent-facebook/agent-facebook.component';
+import {VariationFacebookComponent} from '../variation-facebook/variation-facebook.component';
 
 interface Iabm{
   environment: string;
@@ -56,7 +60,6 @@ export class CreateComponent implements OnInit {
   environ: string;
    agentArray: any[];
    subscription: any;
-   shareProbability: number;
    probabilityserv: number;
    // ---------------------------------
   hub: string;
@@ -94,6 +97,7 @@ export class CreateComponent implements OnInit {
   periodsf: number;
   networksizef: number;
   // ----
+  variation;
   constructor(public rulesDialog: MatDialog, private messageService: DataService, private excelService: ExcelService, private agentService: AgentsService, private variationService: VariationService) {
     this.buildForm();
     this.messageService.sendMessage(this.message);
@@ -111,7 +115,11 @@ export class CreateComponent implements OnInit {
     this.variationService.probability$
       .subscribe(
         res => {
-          this.probabilityserv = res * 100;
+          if (this.probabilityserv === undefined){
+            this.probabilityserv = 0.5 * 100;
+          }else {
+            this.probabilityserv = res * 100;
+          }
           console.log('serv create: ' + this.probabilityserv);
         }
       );
@@ -211,13 +219,15 @@ export class CreateComponent implements OnInit {
       .subscribe(value => {
         this.environ = value.environment;
         if (this.environ === '1'){
+          this.variation = 1;
           this.environ = 'Twitter';
-          this.shareProbability = 50;
         }else{
           if (this.environ === '2'){
-            this.environ = 'Facebook';
+            this.variation = 2;
+            this.environ = 'Whatsapp';
           }else{
-          this.environ = 'Whatsapp';
+            this.variation = 3;
+            this.environ = 'Facebook';
             }
         }
 
@@ -352,19 +362,56 @@ export class CreateComponent implements OnInit {
       /*disableClose: true*/
   });
   }
-  openAgent() {
-    const dialog = this.rulesDialog.open(AgentComponent, {
-      width: '800px',
-      data: this.envService,
-      /*disableClose: true*/
-  });
+  openAgent(env: number) {
+    console.log('openvariation ' + env);
+    if (env === 1) {
+      const dialog = this.rulesDialog.open(AgentComponent, {
+        width: '800px',
+        data: this.envService,
+        /*disableClose: true*/
+      });
+    }else{
+      if (env === 2) {
+        const dialog = this.rulesDialog.open(AgentWhatsappComponent, {
+          width: '800px',
+          data: this.envService,
+          /*disableClose: true*/
+        });
+      }else{
+        if (env === 3) {
+          const dialog = this.rulesDialog.open(AgentFacebookComponent, {
+            width: '800px',
+            data: this.envService,
+            /*disableClose: true*/
+          });
+        }
+      }
+    }
   }
-
-  openVariations() {
-    const dialog = this.rulesDialog.open(VariationsComponent, {
-      width: '800px',
-      data: '',
-      /*disableClose: true*/
-    });
+  openVariations(env: number) {
+    console.log('openvariation ' + env);
+    if (env === 1) {
+      const dialog = this.rulesDialog.open(VariationsComponent, {
+        width: '800px',
+        data: '',
+        /*disableClose: true*/
+      });
+    }else{
+     if (env === 2){
+       const dialog = this.rulesDialog.open(VariationWhatsappComponent, {
+         width: '800px',
+         data: '',
+         /*disableClose: true*/
+       });
+     }else{
+       if (env === 3){
+         const dialog = this.rulesDialog.open(VariationFacebookComponent, {
+           width: '800px',
+           data: '',
+           /*disableClose: true*/
+         });
+       }
+     }
+    }
   }
 }

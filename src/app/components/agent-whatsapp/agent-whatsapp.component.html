@@ -1,0 +1,42 @@
+<div class="col-sm-12" style="text-align:right;">
+  <button  mat-icon-button mat-dialog-close color="warn" (click)="sendCreate()">
+    <mat-icon>clear</mat-icon>
+  </button>
+</div>
+<div class="card">
+  <h5 class="card-header text-center font-weight-bold text-uppercase py-4" id="addAgent">Agents</h5>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+      <table class="table table-bordered table-responsive-md table-striped text-center">
+        <tr>
+          <th class="bg-warning font-italic text-center">Name</th>
+          <th class="bg-warning font-italic text-center">% Participation</th>
+          <th class="bg-warning font-italic text-center">Max user links</th>
+          <th class="bg-warning font-italic text-center">Min user links</th>
+          <th class="bg-warning font-italic text-center">Influence</th>
+        </tr>
+        <tr *ngFor="let person of personList; let id = index">
+          <td>
+            <span (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(id, 'name', $event)" contenteditable="false"><strong>{{person.name}}</strong></span>
+          </td>
+          <td>
+            <span contenteditable="true" (keyup)="changeValue(id, 'participation', $event)" (blur)="updateList(id, 'participation', $event)">{{person.participation}}</span>
+          </td>
+          <td>
+            <span contenteditable="true" (keyup)="changeValue(id, 'maxUserLinks', $event)" (blur)="updateList(id, 'maxUserLinks', $event)">{{person.maxUserLinks}}</span>
+          </td>
+          <td>
+            <span contenteditable="true" (keyup)="changeValue(id, 'minUserLinks', $event)" (blur)="updateList(id, 'minUserLinks', $event)">{{person.minUserLinks}}</span>
+          </td>
+          <td>
+            <span contenteditable="true" (keyup)="changeValue(id, 'influence', $event)" (blur)="updateList(id, 'influence', $event)">{{person.influence}}</span>
+          </td>
+        </tr>
+
+      </table>
+
+  <!--div class="card-footer" >
+    <button (click)="createSimulation()">boton</button>
+  </div-->
+
+</div>

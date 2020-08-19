@@ -5,7 +5,7 @@ import {AgentsService} from '../../../services/agents.service';
 import {SelectionModel} from '@angular/cdk/collections';
 import {MatTableDataSource} from '@angular/material/table';
 import { ABMdata} from '../../../../OpenWom/Essential/ABMdata';
-import {Observable, Subject} from 'rxjs';
+import {Observable, Subject, Subscription} from 'rxjs';
 import {TwitterEnv} from '../../../../OpenWom/Environment/twitter/TwitterEnv';
 import {TwitterSimulation} from '../../../../OpenWom/Environment/twitter/TwitterSimulation';
 import _ from 'lodash';
@@ -64,6 +64,7 @@ export class AgentComponent implements OnInit {
   reportData: any[];
   probability: number;
   probabilityserv: number;
+  createSubscription: Subscription;
   personList: Array<any> = [
     {id: 1, name: 'Hub', participation: 0, maxUserLinks: 0, minUserLinks: 0},
     {id: 2, name: 'OpinionLeader', participation: 0, maxUserLinks: 0, minUserLinks: 0},
@@ -146,13 +147,12 @@ export class AgentComponent implements OnInit {
           console.log('serv: ' + this.probabilityserv);
         }
       );
-    this.dataService.message$
+    this.createSubscription = this.dataService.message$
       .subscribe(
         res => {
           _.forOwn(res, (value, key) => {
             console.log(key, value);
           });
-
           function xinspect(o, i) {
             if (typeof i === 'undefined') {
               i = '';
@@ -322,8 +322,12 @@ export class AgentComponent implements OnInit {
           newSimulation.createNetwork(leader);
           newSimulation.createNetwork(common);
           newSimulation.createFollowers();
-          newSimulation.setProbabilityToSendMessage(this.probabilityserv);
-          if (newSimulation.getProbabilityToSendMessage() === undefined){
+          console.log('antes del if: ', this.probabilityserv);
+          if (this.probabilityserv !== undefined) {
+            newSimulation.setProbabilityToSendMessage(this.probabilityserv);
+          }
+          console.log('despues del if: ', this.probabilityserv);
+          if (newSimulation.getProbabilityToSendMessage() === null){
             newSimulation.setProbabilityToSendMessage(0.5);
           }
           // newSimulation.printNetwork();
@@ -334,7 +338,7 @@ export class AgentComponent implements OnInit {
 
           // newSimulation.getHistory().consoleLogNetwork();
           this.excelService.generateExcel(newSimulation.getHistory().getNetworkHistory());
-          console.log(newSimulation.getHistory().getNetworkHistory());
+         // console.log(newSimulation.getHistory().getNetworkHistory());
         }
       );
     /* ngOnDestroy() {
@@ -351,6 +355,10 @@ export class AgentComponent implements OnInit {
       });
       }*/
   }
+  /*ngOnDestroy(){
+    console.log('Create Unsubscribe');
+    this.createSubscription.unsubscribe();
+  }*/
   sendCreate(){
     this.agentService.sendArray(this.personList);
   }

@@ -20,8 +20,8 @@
               Environment: <br/>
               <select class="form-control form-control-sm col-md-6" formControlName="environment" >
                 <option value="1">Twitter</option>
-                <option value="2">Facebook</option>
-                <option value="3">Whatsapp</option>
+                <option value="2">Whatsapp</option>
+                <option value="3">Facebook</option>
               </select>
             </p>
 
@@ -30,6 +30,7 @@
             <div class=" alert-danger" *ngIf="form.errors  && (form.dirty || form.touched)">
               <p *ngIf="form.errors.pattern" class="text-danger"> Numbers only</p>
             </div>
+            <br>
             <p>
               NetworkSize <br/>
               <input class="form-control form-control-sm col-md-6" type="number" formControlName="networkSize" placeholder="Example: 100">
@@ -67,14 +68,14 @@
   <div class="card w-50">
     <div class="card-body">
       <h5 class="font-italic lead">Here you can select or add agent to the simulation.</h5>
-      <a class="btn btn-primary col-md-6 text-white btn-sm" (click)="openAgent()">Agents <i class="fa fa-users icon-rules"></i></a>
+      <a class="btn btn-primary col-md-6 text-white btn-sm" (click)="openAgent(variation)">Agents <i class="fa fa-users icon-rules"></i></a>
     </div>
   </div>
   <div class="card w-50">
     <div class="card-body">
       <!--h5 class="font-italic">Variations</h5-->
       <h5 class="font-italic lead" >Here you can config specific options for simulation.</h5>
-      <a class="btn btn-primary col-md-6 text-white btn-sm" (click)="openVariations()">Variations <i class="fa fa-wrench icon-rules"></i></a>
+      <a class="btn btn-primary col-md-6 text-white btn-sm" (click)="openVariations(variation)">Variations <i class="fa fa-wrench icon-rules"></i></a>
     </div>
   </div>
 
@@ -87,7 +88,7 @@
 
   <div class="card" style="width: 23rem;">
     <div class="card-body " style="text-align: center " id="environment">
-      <h1 > <strong>Environment :</strong> {{environ}}</h1>
+      <h1 class="text-secondary font-italic"> Environment : {{environ}}</h1>
     </div>
   </div>
 
@@ -111,14 +112,14 @@
 
   <div class="card text-center" style="width: 23rem;">
     <div class="card-body" id="agents">
-      <table class="table">
+      <table class="table table-bordered">
         <thead>
         <tr>
 
-          <th scope="col">Name</th>
-          <th scope="col"> Participation</th>
-          <th scope="col">Max users</th>
-          <th scope="col">Min users</th>
+          <th scope="col" class="bg-info font-italic" >Name</th>
+          <th scope="col" class="bg-info font-italic"> Participation</th>
+          <th scope="col" class="bg-info font-italic">Max users</th>
+          <th scope="col" class="bg-info font-italic">Min users</th>
         </tr>
         </thead>
         <tbody>
@@ -153,7 +154,7 @@
 
   <div class="card text-right" style="width: 23rem; " id="variations">
     <div class="card-body text-center">
-      <h3><strong>Share Probability (%):</strong> {{probabilityserv}}</h3>
+      <h3 class="text-secondary font-italic">Share Probability (%): {{probabilityserv}}</h3>
     </div>
   </div>
 
