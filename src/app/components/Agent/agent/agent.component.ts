@@ -23,7 +23,7 @@ export class AgentComponent implements OnInit {
   arrayAgent: any[];
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any, private dataService: DataService, private excelService: ExcelService, private agentService: AgentsService, private variationService: VariationService) {
+    @Inject(MAT_DIALOG_DATA) public data: any, private dataService: DataService, private excelService: ExcelService,private agentService: AgentsService, private variationService: VariationService) {
     // this.agentService.sendArray(this.arrayAgent);
     console.log(data);
     // this.env = data;

@@ -343,13 +343,6 @@ export class CreateComponent implements OnInit {
   excel(){
     this.generateExcel(this.reportData);
   }
-  getEnv(id: string) {
-    const ele = document.getElementById(id) as HTMLInputElement;
-    alert(ele.value);
-  }
-  selected(event){
-    console.log('llegó');
-  }
 
  /* imprimir(){
     const abmdata = new ABMdata(false, 1, 2, 3);
