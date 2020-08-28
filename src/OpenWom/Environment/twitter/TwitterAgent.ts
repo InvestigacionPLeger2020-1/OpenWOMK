@@ -3,8 +3,8 @@ import {Agent} from '../../Essential/Agent';
 // tslint:disable-next-line:class-name
 export class TwitterAgent extends Agent {
   private type: number;
-  private currentState: string;
-  private futureState: string;
+  private currentState: number;
+  private futureState: number;
   // private links: Array<TwitterAgent>; preguntar como hacer el override aquí o algo que me permita tener un array de TwitterAgent
 
 
@@ -12,7 +12,7 @@ export class TwitterAgent extends Agent {
   constructor(seed: boolean, follower: number, type: number) {
     super(seed, follower);
     this.type = type;
-    this.currentState = 'inactive';
+    this.currentState = 0;
   }
 
   public getType(): number {
@@ -23,19 +23,19 @@ export class TwitterAgent extends Agent {
     this.type = type;
   }
 
-  public getCurrentState(): string {
+  public getCurrentState(): number {
     return this.currentState;
   }
 
-  public setCurrentState(newCurrent: string): void {
+  public setCurrentState(newCurrent: number): void {
     this.currentState = newCurrent;
   }
 
-  public getFutureState(): string {
+  public getFutureState(): number {
     return this.futureState;
   }
 
-  public setFutureState(newState: string): void {
+  public setFutureState(newState: number): void {
     this.futureState = newState;
   }
 
@@ -43,7 +43,7 @@ export class TwitterAgent extends Agent {
     super.sendMessage();
     if (this.receivedMessage && !this.sentMessage && !this.changeFlag) {
       this.retweet();
-      this.futureState = 'Sent';
+      this.futureState = 2;
       this.sentMessage = true;
     }
     this.changeFlag = true;
@@ -54,7 +54,7 @@ export class TwitterAgent extends Agent {
     // console.log(' REfu: ' + this.getId());
     if (!this.receivedMessage && !this.sentMessage && !this.changeFlag) {
       this.receivedMessage = true;
-      this.futureState = 'Received';
+      this.futureState = 1;
       // console.log('recibe: ' + this.getId());
     }
     this.changeFlag = true;
