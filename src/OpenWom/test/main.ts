@@ -5,6 +5,7 @@ import {environment} from '../../environments/environment';
 import {ABMdata} from '../Essential/ABMdata';
 import {TwitterSimulation} from '../Environment/twitter/TwitterSimulation';
 import {TwitterEnv} from '../Environment/twitter/TwitterEnv';
+import {TwitterAgent} from '../Environment/twitter/TwitterAgent';
 
 if (environment.production) {
   enableProdMode();
@@ -99,30 +100,28 @@ console.log(agente.getState());
 
 
  */
-/*
+
 const envSimulation: any = 'Twitter';
 switch (envSimulation) {
   case 'Twitter': {
     console.log('Twitter');
     const env = new TwitterEnv();
-    const newSimulation = new TwitterSimulation(env, 5, 30);
+    const newSimulation = new TwitterSimulation(env, 3, 10);
     // ------------- aqui deberian entrar los datos de la interfaz grafica ----
-    const seed1: ABMdata = new ABMdata(true, 0, 10, 10, 1);
-    const hub: ABMdata = new ABMdata(false, 10, 20, 30, 1);
-    const leader: ABMdata = new ABMdata(false, 10, 20, 30, 2);
-    const common: ABMdata = new ABMdata(false, 10, 20, 30, 3);
+    const seed1: ABMdata = new ABMdata(true, 1, 4, 10, 1);
+    const hub: ABMdata = new ABMdata(false, 1, 4, 30, 1);
+    const leader: ABMdata = new ABMdata(false, 1, 4, 30, 2);
+    const common: ABMdata = new ABMdata(false, 1, 4, 30, 3);
     // ---aqui se deberia ejecutar el comando "create network" en un ciclo dependiendo de los datos que ingresen por la interfaz grafica---
     newSimulation.createNetwork(seed1);
     newSimulation.createNetwork(hub);
     newSimulation.createNetwork(leader);
     newSimulation.createNetwork(common);
-    console.log(newSimulation.getProbabilityToSendMessage());
     newSimulation.createFollowers();
     // newSimulation.printNetwork();
     console.log('-----------------------------');
     newSimulation.run();
-
-    // newSimulation.getHistory().consoleLogNetwork();
+    console.log('-------------------------------');
     console.log(newSimulation.getHistory().getNetworkHistory());
     break;
   }
@@ -131,7 +130,7 @@ switch (envSimulation) {
     break;
   }
 }
-*/
+
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
 

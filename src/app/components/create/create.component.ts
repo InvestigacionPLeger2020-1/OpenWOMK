@@ -3,19 +3,11 @@ import {MatDialog} from '@angular/material/dialog';
 import {AgentsComponent} from '../forms/agents/agents.component';
 import {AgentComponent} from '../agent/agent/agent.component';
 import {VariationsComponent} from '../variations/variations/variations.component';
-import {TwitterAgent} from '../../../OpenWom/Environment/twitter/twitterAgent';
-import { Simulation} from '../../../OpenWom/Essential/Simulation';
-import getDocumentElement from '@popperjs/core/lib/dom-utils/getDocumentElement';
 import { ABMdata} from '../../../OpenWom/Essential/ABMdata';
-import {stringify} from 'querystring';
 import {FormGroup, FormBuilder, FormControl, Validators} from '@angular/forms';
 import {debounceTime} from 'rxjs/operators';
-import {TwitterEnv} from '../../../OpenWom/Environment/twitter/TwitterEnv';
-import {TwitterSimulation} from '../../../OpenWom/Environment/twitter/TwitterSimulation';
 import {DataService} from '../../services/data.service';
-import {Subject} from 'rxjs';
 import { ExcelService} from '../../services/excel.service';
-import {Reporter} from '../../../OpenWom/Reporter/Reporter';
 import {AgentsService} from '../../services/agents.service';
 import {VariationService} from '../../services/variation.service';
 import {AgentWhatsappComponent} from '../agent-whatsapp/agent-whatsapp.component';
@@ -115,6 +107,7 @@ export class CreateComponent implements OnInit {
     this.variationService.probability$
       .subscribe(
         res => {
+          this.probabilityserv = res;
           if (this.probabilityserv === undefined){
             this.probabilityserv = 0.5 * 100;
           }else {
